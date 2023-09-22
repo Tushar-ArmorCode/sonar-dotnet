@@ -19,8 +19,10 @@
  */
 
 using System.IO;
+using System.Linq;
 using SonarAnalyzer.Protobuf;
 using SonarAnalyzer.Rules;
+using SonarAnalyzer.UnitTest.Helpers;
 using CS = SonarAnalyzer.Rules.CSharp;
 using VB = SonarAnalyzer.Rules.VisualBasic;
 
@@ -51,7 +53,7 @@ namespace SonarAnalyzer.UnitTest.Rules
         [DataTestMethod]
         [DataRow(ProjectType.Product)]
         [DataRow(ProjectType.Test)]
-        public void Verify_MainTokens_CSSharp11(ProjectType projectType) =>
+        public void Verify_MainTokens_CSharp11(ProjectType projectType) =>
             Verify("Tokens.Csharp11.cs", projectType, info =>
             {
                 info.Should().HaveCount(42);
@@ -64,10 +66,96 @@ namespace SonarAnalyzer.UnitTest.Rules
         [DataTestMethod]
         [DataRow("Razor.razor")]
         [DataRow("Razor.cshtml")]
-        public void Verify_NoMetricsAreComputedForRazorFiles(string fileName) =>
+        public void Verify_MetricsAreComputedForRazorFiles(string fileName) =>
             CreateBuilder(ProjectType.Product, fileName)
                 .WithAdditionalFilePath(AnalysisScaffolding.CreateSonarProjectConfig(TestContext, ProjectType.Product))
-                .VerifyUtilityAnalyzer<TokenTypeInfo>(messages => messages.Select(x => Path.GetFileName(x.FilePath)).Should().BeEmpty());
+                .VerifyUtilityAnalyzer<TokenTypeInfo>(messages => messages.Select(x => Path.GetFileName(x.FilePath)).Should().NotBeEmpty());
+
+        [TestMethod]
+        public void Verify_Razor()
+        {
+            CreateBuilder(ProjectType.Product, "RazorTokens.razor", "RazorTokens.cs")
+                .WithAdditionalFilePath(AnalysisScaffolding.CreateSonarProjectConfig(TestContext, ProjectType.Product))
+                .WithConcurrentAnalysis(false)
+                .VerifyUtilityAnalyzer<TokenTypeInfo>(tokens =>
+                    {
+                        var orderedTokens = tokens.OrderBy(x => x.FilePath, StringComparer.Ordinal).ToArray();
+                        orderedTokens.Select(x => Path.GetFileName(x.FilePath)).Should().Contain("_Imports.razor", "RazorTokens.razor", "RazorTokens.cs");
+                        orderedTokens[2].FilePath.Should().EndWith("_Imports.razor");
+                        orderedTokens[1].FilePath.Should().EndWith("RazorTokens.razor");
+                        orderedTokens[1].TokenInfo
+                            .GroupBy(x => (x.TextRange.StartLine, x.TextRange.EndLine))
+                            .ToDictionary(x => x.Key, x => string.Join(string.Empty, x.Select(y => TokenTypeAcronyms[y.TokenType])))
+                            .Should()
+                                // Razor directives including C# Tokens
+                                .Contain((41, 41), "k")
+                                .And.Contain((42, 42), "k")
+                                .And.Contain((43, 43), "k")
+                                .And.Contain((44, 44), "ktt")
+                                .And.Contain((47, 47), "kk")
+                                .And.Contain((51, 51), "kkn")
+                                .And.Contain((52, 52), "kkn")
+                                .And.Contain((53, 53), "kkkn")
+                                .And.Contain((54, 54), "kkkn")
+                                .And.Contain((55, 55), "ks")
+                                .And.Contain((56, 56), "ks")
+                                .And.Contain((57, 57), "kssns")
+                                .And.Contain((58, 58), "ks")
+                                .And.Contain((59, 59), "ksns")
+                                .And.Contain((60, 60), "ksnss")
+                                .And.Contain((62, 66), "c")
+                                .And.Contain((66, 66), "kkkcsc")
+                                .And.Contain((68, 68), "kktkkkkkts")
+                                .And.Contain((70, 70), "c")
+                                .And.Contain((71, 73), "c")
+                                .And.Contain((74, 74), "c")
+                                // Implicit Razor expressions including C# Tokens
+                                .And.Contain((84, 84), "t")
+                                .And.Contain((85, 85), "tn")
+                                .And.Contain((86, 86), "kkk")
+                                .And.Contain((87, 87), "t")     // Spaces only supported by "@await"
+                                // Explicit Razor expressions including C# Tokens
+                                .And.Contain((91, 91), "nn")
+                                .And.Contain((92, 92), "nn")
+                                .And.Contain((93, 93), "ttn")
+                                // Razor code blocks
+                                .And.Contain((98, 98), "kn")
+                                .And.Contain((99, 99), "kn")
+                                .And.Contain((100, 100), "kn")
+                                // Single-level nested Razor expressions
+                                .And.Contain((106, 106), "nnn") // HTML comments are not C# comments
+                                .And.Contain((107, 107), "sssnsssns")
+                                .And.Contain((108, 108), "kk")
+                                .And.Contain((109, 109), "nc")
+                                .And.Contain((110, 110), "c")
+                                .And.Contain((111, 111), "t")
+                                // Multi-level nested Razor expressions in statements
+                                .And.Contain((116, 116), "nnn") // HTML comments are not C# comments
+                                .And.Contain((117, 117), "sssnsssns")
+                                .And.Contain((118, 118), "kk")
+                                .And.Contain((119, 119), "nc")
+                                .And.Contain((120, 120), "c")
+                                .And.Contain((121, 121), "t")
+                                // Bind, on{EVENT}
+                                .And.Contain((126, 126), "c")   // "@bind" is a Razor token, but its value is C#
+                                .And.Contain((128, 128), "c")   // "@onclick" is a Razor token, but its value is C#
+                                .And.Contain((129, 129), "cc")  // "@onclick:stopPropagation" is a Razor token, but its value is C#
+                                .And.NotContainKey((130, 130))  // HTML comments are not C# comments
+                                .And.Contain((134, 134), "kts")
+                                .And.Contain((135, 135), "kkk")
+                                .And.Contain((137, 137), "kk")
+                                // Async await
+                                .And.Contain((142, 142), "ktk")
+                                .And.Contain((144, 144), "k")   // "@await" is a C# token, transitioning to C# (whitespace allowed after it)
+                                .And.Contain((145, 145), "kkts")
+                                // Explicit line transitions
+                                .And.NotContainKey((151, 151))  // What follows "@:" is HTML
+                                // Razor keys
+                                .And.Contain((155, 155), "c")   // "@key" is a Razor token
+                                // Razor comments
+                                .And.NotContainKey((162, 162)); // Razor comments are not C# comments
+                    });
+        }
 
 #endif
 
@@ -166,10 +254,10 @@ namespace SonarAnalyzer.UnitTest.Rules
                         verifyTokenInfo(info.TokenInfo);
                     });
 
-        private VerifierBuilder CreateBuilder(ProjectType projectType, string fileName)
+        private VerifierBuilder CreateBuilder(ProjectType projectType, params string[] fileNames)
         {
             var testRoot = BasePath + TestContext.TestName;
-            var language = AnalyzerLanguage.FromPath(fileName);
+            var language = AnalyzerLanguage.FromPath(fileNames[0]);
             UtilityAnalyzerBase analyzer = language.LanguageName switch
             {
                 LanguageNames.CSharp => new TestTokenTypeAnalyzer_CS(testRoot, projectType == ProjectType.Test),
@@ -178,7 +266,7 @@ namespace SonarAnalyzer.UnitTest.Rules
             };
             return new VerifierBuilder()
                 .AddAnalyzer(() => analyzer)
-                .AddPaths(fileName)
+                .AddPaths(fileNames)
                 .WithBasePath(BasePath)
                 .WithOptions(ParseOptionsHelper.Latest(language))
                 .WithProtobufPath(@$"{testRoot}\token-type.pb");

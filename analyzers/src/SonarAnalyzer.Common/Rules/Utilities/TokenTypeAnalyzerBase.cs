@@ -35,14 +35,10 @@ namespace SonarAnalyzer.Rules
 
         protected TokenTypeAnalyzerBase() : base(DiagnosticId, Title) { }
 
-        protected abstract TokenClassifierBase GetTokenClassifier(SemanticModel semanticModel, bool skipIdentifierTokens);
-        protected abstract TriviaClassifierBase GetTriviaClassifier();
+        protected abstract TokenClassifierBase GetTokenClassifier(SemanticModel semanticModel, bool skipIdentifierTokens, string filePath, ImmutableSortedSet<LineDirectiveEntry> lineDirectiveMap);
+        protected abstract TriviaClassifierBase GetTriviaClassifier(string filePath, ImmutableSortedSet<LineDirectiveEntry> lineDirectiveMap);
 
-        protected override bool ShouldGenerateMetrics(SyntaxTree tree, Compilation compilation) =>
-            !GeneratedCodeRecognizer.IsRazorGeneratedFile(tree)
-            && base.ShouldGenerateMetrics(tree, compilation);
-
-        protected sealed override TokenTypeInfo CreateMessage(SyntaxTree tree, SemanticModel model)
+        protected sealed override TokenTypeInfo CreateMessage(SyntaxTree tree, SemanticModel model, ImmutableSortedSet<LineDirectiveEntry> lineDirectiveMap)
         {
             var tokens = tree.GetRoot().DescendantTokens();
             var identifierTokenKind = Language.SyntaxKind.IdentifierToken;  // Performance optimization
@@ -51,8 +47,9 @@ namespace SonarAnalyzer.Rules
                 .Skip(IdentifierTokenCountThreshold)
                 .Any();
 
-            var tokenClassifier = GetTokenClassifier(model, skipIdentifierTokens);
-            var triviaClassifier = GetTriviaClassifier();
+            var filePath = tree.GetRoot().GetMappedFilePathFromRoot(); // For a razor generated file, we need the original file path.
+            var tokenClassifier = GetTokenClassifier(model, skipIdentifierTokens, filePath, lineDirectiveMap);
+            var triviaClassifier = GetTriviaClassifier(filePath, lineDirectiveMap);
             var spans = new List<TokenInfo>();
             // The second iteration of the tokens is intended since there is no processing done and we want to avoid copying all the tokens to a second collection.
             foreach (var token in tokens)
@@ -73,7 +70,7 @@ namespace SonarAnalyzer.Rules
 
             var tokenTypeInfo = new TokenTypeInfo
             {
-                FilePath = tree.FilePath
+                FilePath = filePath
             };
 
             tokenTypeInfo.TokenInfo.AddRange(spans);
@@ -95,6 +92,8 @@ namespace SonarAnalyzer.Rules
         {
             private readonly bool skipIdentifiers;
             private readonly SemanticModel semanticModel;
+            private readonly string filePath;
+            private readonly ImmutableSortedSet<LineDirectiveEntry> lineDirectiveMap;
 
             private static readonly ISet<MethodKind> ConstructorKinds = new HashSet<MethodKind>
             {
@@ -119,10 +118,12 @@ namespace SonarAnalyzer.Rules
 
             protected SemanticModel SemanticModel => semanticModel ?? throw new InvalidOperationException("The code snippet is not supposed to call the semantic model for classification.");
 
-            protected TokenClassifierBase(SemanticModel semanticModel, bool skipIdentifiers)
+            protected TokenClassifierBase(SemanticModel semanticModel, bool skipIdentifiers, string filePath, ImmutableSortedSet<LineDirectiveEntry> lineDirectiveMap)
             {
                 this.semanticModel = semanticModel;
                 this.skipIdentifiers = skipIdentifiers;
+                this.filePath = filePath;
+                this.lineDirectiveMap = lineDirectiveMap;
             }
 
             public TokenInfo ClassifyToken(SyntaxToken token) =>
@@ -135,15 +136,15 @@ namespace SonarAnalyzer.Rules
                     _ => null,
                 };
 
-            protected static TokenInfo TokenInfo(SyntaxToken token, TokenType tokenType) =>
-                tokenType == TokenType.UnknownTokentype
-                || (string.IsNullOrWhiteSpace(token.Text) && tokenType != TokenType.StringLiteral)
-                    ? null
-                    : new()
-                    {
-                        TokenType = tokenType,
-                        TextRange = GetTextRange(token.GetLocation().GetLineSpan()),
-                    };
+            protected TokenInfo TokenInfo(SyntaxToken token, TokenType tokenType)
+            {
+                var span = token.GetLocation().GetMappedLineSpanIfAvailable(lineDirectiveMap);
+                return tokenType == TokenType.UnknownTokentype
+                    || (string.IsNullOrWhiteSpace(token.Text) && tokenType != TokenType.StringLiteral)
+                    || !(string.IsNullOrWhiteSpace(filePath) || string.Equals(span.Path, filePath, StringComparison.OrdinalIgnoreCase))
+                        ? null
+                        : new() { TokenType = tokenType, TextRange = GetTextRange(span) };
+            }
 
             protected virtual TokenInfo ClassifyIdentifier(SyntaxToken token)
             {
@@ -176,27 +177,36 @@ namespace SonarAnalyzer.Rules
 
         protected internal abstract class TriviaClassifierBase
         {
+            private readonly string filePath;
+            private readonly ImmutableSortedSet<LineDirectiveEntry> lineDirectiveMap;
+
             protected abstract bool IsDocComment(SyntaxTrivia trivia);
             protected abstract bool IsRegularComment(SyntaxTrivia trivia);
 
+            protected TriviaClassifierBase(string filePath, ImmutableSortedSet<LineDirectiveEntry> lineDirectiveMap)
+            {
+                this.filePath = filePath;
+                this.lineDirectiveMap = lineDirectiveMap;
+            }
+
             public TokenInfo ClassifyTrivia(SyntaxTrivia trivia) =>
-                trivia switch
-                {
-                    _ when IsRegularComment(trivia) => TokenInfo(trivia.SyntaxTree, TokenType.Comment, trivia.Span),
-                    _ when IsDocComment(trivia) => ClassifyDocComment(trivia),
-                    // Handle preprocessor directives here
-                    _ => null,
-                };
+                string.IsNullOrWhiteSpace(filePath)
+                || string.Equals(filePath, trivia.GetLocation().GetMappedLineSpanIfAvailable(lineDirectiveMap).Path, StringComparison.OrdinalIgnoreCase)
+                    ? trivia switch
+                    {
+                        _ when IsRegularComment(trivia) => TokenInfo(trivia.SyntaxTree, TokenType.Comment, trivia.Span),
+                        _ when IsDocComment(trivia) => TokenInfo(trivia.SyntaxTree, TokenType.Comment, trivia.FullSpan),
+                        // Handle preprocessor directives here
+                        _ => null,
+                    }
+                    : null;
 
             private TokenInfo TokenInfo(SyntaxTree tree, TokenType tokenType, TextSpan span) =>
                 new()
                 {
                     TokenType = tokenType,
-                    TextRange = GetTextRange(Location.Create(tree, span).GetLineSpan())
+                    TextRange = GetTextRange(Location.Create(tree, span).GetMappedLineSpanIfAvailable(lineDirectiveMap))
                 };
-
-            private TokenInfo ClassifyDocComment(SyntaxTrivia trivia) =>
-                TokenInfo(trivia.SyntaxTree, TokenType.Comment, trivia.FullSpan);
         }
     }
 }

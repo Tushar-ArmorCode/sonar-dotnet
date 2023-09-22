@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis.Text;
 using SonarAnalyzer.Protobuf;
+using SonarAnalyzer.Rules;
 using static SonarAnalyzer.Rules.CSharp.TokenTypeAnalyzer;
 using Match = System.Text.RegularExpressions.Match;
 
@@ -9,24 +10,29 @@ namespace SonarAnalyzer.UnitTest.Rules;
 
 public partial class TokenTypeAnalyzerTest
 {
+    private static readonly Dictionary<TokenType, string> TokenTypeAcronyms = new()
+    {
+        { TokenType.Keyword, "k" },
+        { TokenType.NumericLiteral, "n" },
+        { TokenType.StringLiteral, "s" },
+        { TokenType.TypeName, "t" },
+        { TokenType.Comment, "c" },
+        { TokenType.UnknownTokentype, "u" },
+    };
+
     private static class ClassifierTestHarness
     {
         private const int TokenAnnotationChars = 4; // [u:]
         private const int PrefixTokenAnnotationChars = 3; // [u:
-        private static readonly Regex TokenTypeRegEx = new(TokenGroups(
-            TokenGroup(TokenType.Keyword, "k"),
-            TokenGroup(TokenType.NumericLiteral, "n"),
-            TokenGroup(TokenType.StringLiteral, "s"),
-            TokenGroup(TokenType.TypeName, "t"),
-            TokenGroup(TokenType.Comment, "c"),
-            TokenGroup(TokenType.UnknownTokentype, "u")));
+        private static readonly Regex TokenTypeRegEx = new(TokenGroups(TokenTypeAcronyms.Select(x => TokenGroup(x.Key, x.Value)).ToArray()));
 
         public static void AssertTokenTypes(string code, bool allowSemanticModel = true, bool ignoreCompilationErrors = false)
         {
             var (tree, model, expectedTokens) = ParseTokens(code, ignoreCompilationErrors);
             model = allowSemanticModel ? model : null; // The TokenClassifier will throw if the semantic model is used.
-            var tokenClassifier = new TokenClassifier(model, false);
-            var triviaClassifier = new TriviaClassifier();
+            // filePath for the snippet is defined later by TestHelper.CompileCS -> ignore filePath when classifying tokens and trivia
+            var tokenClassifier = new TokenClassifier(model, false, string.Empty, ImmutableSortedSet<LineDirectiveEntry>.Empty);
+            var triviaClassifier = new TriviaClassifier(string.Empty, ImmutableSortedSet<LineDirectiveEntry>.Empty);
             expectedTokens.Should().SatisfyRespectively(expectedTokens.Select(
                 (Func<ExpectedToken, Action<ExpectedToken>>)(_ => token => CheckClassifiedToken(tokenClassifier, triviaClassifier, tree, token))));
         }
