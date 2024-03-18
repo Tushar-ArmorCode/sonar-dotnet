@@ -19,6 +19,7 @@
  */
 
 using System.Collections.Concurrent;
+using SonarAnalyzer.Extensions;
 using static SonarAnalyzer.Helpers.ArgumentDescriptor;
 using static SonarAnalyzer.Helpers.KnownType;
 
@@ -184,17 +185,17 @@ public sealed class UseModelBinding : SonarDiagnosticAnalyzer<SyntaxKind>
         return current;
     }
 
+    private static Location GetPrimaryLocation(ArgumentSyntax argument) =>
+        ((SyntaxNode)GetExpressionOfArgumentParent(argument) ?? argument).GetLocation();
+
     private static ExpressionSyntax GetExpressionOfArgumentParent(ArgumentSyntax argument) =>
         argument switch
         {
-            { Parent: BracketedArgumentListSyntax { Parent: ElementBindingExpressionSyntax { Parent: ConditionalAccessExpressionSyntax { Expression: { } expression } } } } => expression,
+            { Parent: BracketedArgumentListSyntax { Parent: ElementBindingExpressionSyntax { Parent: ConditionalAccessExpressionSyntax { Expression: { } expression } } } } => expression.GetParentConditionalAccessExpression(),
             { Parent: BracketedArgumentListSyntax { Parent: ElementAccessExpressionSyntax { Expression: { } expression } } } => expression,
             { Parent: ArgumentListSyntax { Parent: InvocationExpressionSyntax { Expression: { } expression } } } => expression,
             _ => null,
         };
-
-    private static Location GetPrimaryLocation(ArgumentSyntax argument) =>
-        ((SyntaxNode)GetExpressionOfArgumentParent(argument) ?? argument).GetLocation();
 
     private static bool IsGetterParameter(IParameterSymbol parameter) =>
         parameter.ContainingSymbol is IMethodSymbol { MethodKind: MethodKind.PropertyGet };

@@ -46,6 +46,16 @@ public class TestController : Controller
         //  ^^^^^^^^^^^^^^^^^^
         _ = Request.Form.Files.GetFiles("file");          // Noncompliant {{Use IFormFile or IFormFileCollection binding instead}}
         //  ^^^^^^^^^^^^^^^^^^
+
+        _ = Request.Form.Files[("file")]; // Noncompliant
+        //  ^^^^^^^^^^^^^^^^^^
+        _ = Request.Form.Files[(("file"))]; // Noncompliant
+        //  ^^^^^^^^^^^^^^^^^^
+        _ = (Request.Form.Files)["file"]; // Noncompliant
+        //   ^^^^^^^^^^^^^^^^^^
+        _ = ((Request.Form.Files))["file"]; // Noncompliant
+        //    ^^^^^^^^^^^^^^^^^^
+
         return default;
 
         string F() => "ddd";
