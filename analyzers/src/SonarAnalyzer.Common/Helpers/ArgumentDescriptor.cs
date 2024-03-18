@@ -30,9 +30,14 @@ public enum InvokedMemberKind
 
 public class ArgumentDescriptor
 {
-    private ArgumentDescriptor(InvokedMemberKind memberKind, Func<IMethodSymbol, bool> invokedMemberConstraint, Func<string, StringComparison, bool> invokedMemberNameConstraint,
-        Func<SemanticModel, ILanguageFacade, SyntaxNode, bool> invokedMemberNodeConstraint, Func<IReadOnlyCollection<SyntaxNode>, int?, bool> argumentListConstraint,
-        Func<IParameterSymbol, bool> parameterConstraint, RefKind? refKind)
+    private ArgumentDescriptor(
+        InvokedMemberKind memberKind,
+        Func<IMethodSymbol, bool> invokedMemberConstraint,
+        Func<string, StringComparison, bool> invokedMemberNameConstraint,
+        Func<SemanticModel, ILanguageFacade, SyntaxNode, bool> invokedMemberNodeConstraint,
+        Func<IReadOnlyCollection<SyntaxNode>, int?, bool> argumentListConstraint,
+        Func<IParameterSymbol, bool> parameterConstraint,
+        RefKind? refKind)
     {
         MemberKind = memberKind;
         ArgumentListConstraint = argumentListConstraint;

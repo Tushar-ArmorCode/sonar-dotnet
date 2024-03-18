@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Linq;
+using System.Net.Cache;
 using System.Threading.Tasks;
 
 public class TestController : Controller
@@ -46,6 +47,8 @@ public class TestController : Controller
         _ = Request.Form.Files.GetFiles("file");          // Noncompliant {{Use IFormFile or IFormFileCollection binding instead}}
         //  ^^^^^^^^^^^^^^^^^^
         return default;
+
+        string F() => "ddd";
     }
 
     void MixedAccess_Form(string key)
@@ -63,8 +66,8 @@ public class TestController : Controller
     void FalseNegatives()
     {
         string localKey = "id";
-        _ = Request.Form[localKey];                               // FN (Requires SE)
-        _ = Request.Form[Key];                                    // FN: Key is a readonly field with a constant initializer (Requires cross procedure SE)
+        _ = Request.Form[localKey];                               // Noncompliant
+        _ = Request.Form[Key];                                    // Noncompliant: Key is a readonly field with a constant initializer (Requires cross procedure SE)
     }
 
     void FormCollection(IFormCollection form)
@@ -157,7 +160,7 @@ public class OverridesController : Controller
 {
     public void Action()
     {
-        _ = Request.Form["id"]; // Noncompliant 
+        _ = Request.Form["id"]; // Noncompliant
     }
     private void Undecidable(HttpContext context)
     {

@@ -19,6 +19,8 @@
  */
 
 using System.Collections.Concurrent;
+using static SonarAnalyzer.Helpers.ArgumentDescriptor;
+using static SonarAnalyzer.Helpers.KnownType;
 
 namespace SonarAnalyzer.Rules.CSharp;
 
@@ -29,81 +31,106 @@ public sealed class UseModelBinding : SonarDiagnosticAnalyzer<SyntaxKind>
     private const string UseModelBindingMessage = "Use model binding instead of accessing the raw request data";
     private const string UseIFormFileBindingMessage = "Use IFormFile or IFormFileCollection binding instead";
 
+private static readonly ArgumentDescriptor[] ArgumentDescriptors =
+    [
+        ElementAccess(Microsoft_AspNetCore_Http_IFormCollection, "Form", _ => true, 0),
+        MethodInvocation(Microsoft_AspNetCore_Http_IFormCollection, "TryGetValue", "key", 0),
+        MethodInvocation(Microsoft_AspNetCore_Http_IFormCollection, "ContainsKey", "key", 0),
+        ElementAccess(Microsoft_AspNetCore_Http_IHeaderDictionary, "Headers", IsGetterParameter, 0),
+        MethodInvocation(
+            x => IsIDictionaryStringStringValuesInvocation(x, "TryGetValue"),
+            (name, comparison) => string.Equals(name, "TryGetValue", comparison),
+            IsAccessedViaHeaderDictionary,
+            x => string.Equals(x.Name, "key", StringComparison.Ordinal),
+            (list, position) => list.Count == 2 && (position is 0 or null), RefKind.None),
+        MethodInvocation(
+            x => IsIDictionaryStringStringValuesInvocation(x, "ContainsKey"),
+            (name, comparison) => string.Equals(name, "ContainsKey", comparison),
+            IsAccessedViaHeaderDictionary,
+            x => string.Equals(x.Name, "key", StringComparison.Ordinal),
+            (list, _) => list.Count == 1, RefKind.None),
+        ElementAccess(Microsoft_AspNetCore_Http_IQueryCollection, "Query", _ => true, 0),
+        MethodInvocation(Microsoft_AspNetCore_Http_IQueryCollection, "TryGetValue", "key", 0),
+        ElementAccess(Microsoft_AspNetCore_Routing_RouteValueDictionary, "RouteValues", IsGetterParameter, 0),
+        MethodInvocation(Microsoft_AspNetCore_Routing_RouteValueDictionary, "TryGetValue", "key", 0),
+    ];
+
+    private static readonly MemberDescriptor[] PropertyAccessDescriptors =
+        [
+            new(Microsoft_AspNetCore_Http_IFormCollection, "Files"), // Request.Form.Files...
+        ];
+
     protected override string MessageFormat => "{0}";
 
     protected override ILanguageFacade<SyntaxKind> Language => CSharpFacade.Instance;
 
     public UseModelBinding() : base(DiagnosticId) { }
 
-    protected override void Initialize(SonarAnalysisContext context)
-    {
+    protected override void Initialize(SonarAnalysisContext context) =>
         context.RegisterCompilationStartAction(compilationStartContext =>
         {
-            var (argumentDescriptors, propertyAccessDescriptors) = GetDescriptors(compilationStartContext.Compilation);
-            if (argumentDescriptors.Any() || propertyAccessDescriptors.Any())
+            compilationStartContext.RegisterSymbolStartAction(symbolStartContext =>
             {
-                compilationStartContext.RegisterSymbolStartAction(symbolStartContext =>
+                // If the user overrides any action filters, model binding may not be working as expected.
+                // Then we do not want to raise on expressions that originate from parameters.
+                // See the OverridesController.Undecidable test cases for details.
+                var hasOverrides = false;
+                var candidates = new ConcurrentStack<ReportCandidate>(); // In SymbolEnd, we filter the candidates based on the overriding we learn on the go.
+                if (symbolStartContext.Symbol is INamedTypeSymbol namedType && namedType.IsControllerType())
                 {
-                    // If the user overrides any action filters, model binding may not be working as expected. Then we do not want to raise on expressions that originate from parameters.
-                    // See the OverridesController.Undecidable test cases for details.
-                    var hasOverrides = false;
-                    var controllerCandidates = new ConcurrentStack<ReportCandidate>(); // In SymbolEnd, we filter the candidates based on the overriding we learn on the go.
-                    if (symbolStartContext.Symbol is INamedTypeSymbol namedType && namedType.IsControllerType())
+                    symbolStartContext.RegisterCodeBlockStartAction<SyntaxKind>(codeBlockStart =>
                     {
-                        symbolStartContext.RegisterCodeBlockStartAction<SyntaxKind>(codeBlockStart =>
-                            hasOverrides |= RegisterCodeBlockActions(codeBlockStart, argumentDescriptors, propertyAccessDescriptors, controllerCandidates));
-                    }
-                    symbolStartContext.RegisterSymbolEndAction(symbolEnd =>
-                    {
-                        foreach (var candidate in controllerCandidates.Where(x => !(hasOverrides && x.OriginatesFromParameter)))
+                        if (IsOverridingFilterMethods(codeBlockStart.OwningSymbol))
                         {
-                            symbolEnd.ReportIssue(Diagnostic.Create(Rule, candidate.Location, candidate.Message));
+                            hasOverrides = true;
+                        }
+                        else
+                        {
+                            RegisterCodeBlockActions(codeBlockStart, candidates);
                         }
                     });
-                }, SymbolKind.NamedType);
-            }
+                }
+                symbolStartContext.RegisterSymbolEndAction(symbolEnd =>
+                {
+                    foreach (var candidate in candidates.Where(x => !hasOverrides || !x.OriginatesFromParameter))
+                    {
+                        symbolEnd.ReportIssue(Diagnostic.Create(Rule, candidate.Location, candidate.Message));
+                    }
+                });
+            }, SymbolKind.NamedType);
         });
-    }
 
-    private bool RegisterCodeBlockActions(SonarCodeBlockStartAnalysisContext<SyntaxKind> codeBlockStart,
-        ArgumentDescriptor[] argumentDescriptors, MemberDescriptor[] propertyAccessDescriptors,
+    private void RegisterCodeBlockActions(
+        SonarCodeBlockStartAnalysisContext<SyntaxKind> codeBlockStart,
         ConcurrentStack<ReportCandidate> controllerCandidates)
     {
-        if (codeBlockStart.OwningSymbol is IMethodSymbol method && IsOverridingFilterMethods(method))
-        {
-            // We do not want to raise in ActionFilter overrides. The SymbolEndAction needs to be made aware, that there are
-            // ActionFilter overrides, so it can filter out some candidates.
-            return true;
-        }
-        // Within a single code block, access via constant and variable keys could be mixed
-        // We only want to raise, if all access were done via constants
+        // Within a single code block, access via constant and variable keys could be mixed.
+        // We only want to raise, if all access were done via de-facto constants.
         var allConstantAccess = true;
         var codeBlockCandidates = new ConcurrentStack<ReportCandidate>();
-        if (argumentDescriptors.Any())
-        {
-            codeBlockStart.RegisterNodeAction(nodeContext =>
+        codeBlockStart.RegisterNodeAction(nodeContext =>
             {
+                if (!allConstantAccess)
+                {
+                    return;
+                }
                 var argument = (ArgumentSyntax)nodeContext.Node;
                 var context = new ArgumentContext(argument, nodeContext.SemanticModel);
-                if (allConstantAccess && argumentDescriptors.Any(x => Language.Tracker.Argument.MatchArgument(x)(context)))
+                if (Array.Exists(ArgumentDescriptors, x => Language.Tracker.Argument.MatchArgument(x)(context)))
                 {
-                    allConstantAccess &= nodeContext.SemanticModel.GetConstantValue(argument.Expression) is { HasValue: true, Value: string };
+                    allConstantAccess = Language.FindConstantValue(nodeContext.SemanticModel, argument.Expression) is string;
                     codeBlockCandidates.Push(new(UseModelBindingMessage, GetPrimaryLocation(argument), OriginatesFromParameter(nodeContext.SemanticModel, argument)));
                 }
             }, SyntaxKind.Argument);
-        }
-        if (propertyAccessDescriptors.Any())
-        {
-            codeBlockStart.RegisterNodeAction(nodeContext =>
+        codeBlockStart.RegisterNodeAction(nodeContext =>
             {
                 var memberAccess = (MemberAccessExpressionSyntax)nodeContext.Node;
                 var context = new PropertyAccessContext(memberAccess, nodeContext.SemanticModel, memberAccess.Name.Identifier.ValueText);
-                if (Language.Tracker.PropertyAccess.MatchProperty(propertyAccessDescriptors)(context))
+                if (Language.Tracker.PropertyAccess.MatchProperty(PropertyAccessDescriptors)(context))
                 {
                     codeBlockCandidates.Push(new(UseIFormFileBindingMessage, memberAccess.GetLocation(), OriginatesFromParameter(nodeContext.SemanticModel, memberAccess)));
                 }
             }, SyntaxKind.SimpleMemberAccessExpression);
-        }
         codeBlockStart.RegisterCodeBlockEndAction(codeBlockEnd =>
         {
             if (allConstantAccess)
@@ -111,93 +138,20 @@ public sealed class UseModelBinding : SonarDiagnosticAnalyzer<SyntaxKind>
                 controllerCandidates.PushRange([.. codeBlockCandidates]);
             }
         });
-        return false;
-    }
-
-    private static (ArgumentDescriptor[] ArgumentDescriptors, MemberDescriptor[] PropertyAccessDescriptors) GetDescriptors(Compilation compilation)
-    {
-        var argumentDescriptors = new List<ArgumentDescriptor>();
-        var propertyAccessDescriptors = new List<MemberDescriptor>();
-        if (compilation.GetTypeByMetadataName(KnownType.Microsoft_AspNetCore_Mvc_ControllerAttribute) is { })
-        {
-            AddAspNetCoreDescriptors(argumentDescriptors, propertyAccessDescriptors);
-        }
-        // TODO: Add descriptors for Asp.Net MVC 4.x
-        return ([.. argumentDescriptors], [.. propertyAccessDescriptors]);
-    }
-
-    private static void AddAspNetCoreDescriptors(List<ArgumentDescriptor> argumentDescriptors, List<MemberDescriptor> propertyAccessDescriptors)
-    {
-        argumentDescriptors.AddRange([
-            ArgumentDescriptor.ElementAccess(// Request.Form["id"]
-                invokedIndexerContainer: KnownType.Microsoft_AspNetCore_Http_IFormCollection,
-                invokedIndexerExpression: "Form",
-                parameterConstraint: _ => true, // There is only a single overload and it is getter only
-                argumentPosition: 0),
-            ArgumentDescriptor.MethodInvocation(// Request.Form.TryGetValue("id", out _)
-                invokedType: KnownType.Microsoft_AspNetCore_Http_IFormCollection,
-                methodName: "TryGetValue",
-                parameterName: "key",
-                argumentPosition: 0),
-            ArgumentDescriptor.MethodInvocation(// Request.Form.ContainsKey("id")
-                invokedType: KnownType.Microsoft_AspNetCore_Http_IFormCollection,
-                methodName: "ContainsKey",
-                parameterName: "key",
-                argumentPosition: 0),
-            ArgumentDescriptor.ElementAccess(// Request.Headers["id"]
-                invokedIndexerContainer: KnownType.Microsoft_AspNetCore_Http_IHeaderDictionary,
-                invokedIndexerExpression: "Headers",
-                parameterConstraint: IsGetterParameter, // Headers are read/write
-                argumentPosition: 0),
-            ArgumentDescriptor.MethodInvocation(// Request.Headers.TryGetValue("id", out _)
-                invokedMethodSymbol: x => IsIDictionaryStringStringValuesInvocation(x, "TryGetValue"), // TryGetValue is from IDictionary<TKey, TValue> here. We check the type arguments.
-                invokedMemberNameConstraint: (name, comparison) => string.Equals(name, "TryGetValue", comparison),
-                invokedMemberNodeConstraint: IsAccessedViaHeaderDictionary,
-                parameterConstraint: x => string.Equals(x.Name, "key", StringComparison.Ordinal),
-                argumentListConstraint: (list, position) => list.Count == 2 && position is 0 or null,
-                refKind: RefKind.None),
-            ArgumentDescriptor.MethodInvocation(// Request.Headers.ContainsKey("id")
-                invokedMethodSymbol: x => IsIDictionaryStringStringValuesInvocation(x, "ContainsKey"),
-                invokedMemberNameConstraint: (name, comparison) => string.Equals(name, "ContainsKey", comparison),
-                invokedMemberNodeConstraint: IsAccessedViaHeaderDictionary,
-                parameterConstraint: x => string.Equals(x.Name, "key", StringComparison.Ordinal),
-                argumentListConstraint: (list, _) => list.Count == 1,
-                refKind: RefKind.None),
-            ArgumentDescriptor.ElementAccess(// Request.Query["id"]
-                invokedIndexerContainer: KnownType.Microsoft_AspNetCore_Http_IQueryCollection,
-                invokedIndexerExpression: "Query",
-                parameterConstraint: _ => true, // There is only a single overload and it is getter only
-                argumentPosition: 0),
-            ArgumentDescriptor.MethodInvocation(// Request.Query.TryGetValue("id", out _)
-                invokedType: KnownType.Microsoft_AspNetCore_Http_IQueryCollection,
-                methodName: "TryGetValue",
-                parameterName: "key",
-                argumentPosition: 0),
-            ArgumentDescriptor.ElementAccess(// Request.RouteValues["id"]
-                invokedIndexerContainer: KnownType.Microsoft_AspNetCore_Routing_RouteValueDictionary,
-                invokedIndexerExpression: "RouteValues",
-                parameterConstraint: IsGetterParameter, // RouteValues are read/write
-                argumentPosition: 0),
-            ArgumentDescriptor.MethodInvocation(// Request.RouteValues.TryGetValue("id", out _)
-                invokedType: KnownType.Microsoft_AspNetCore_Routing_RouteValueDictionary,
-                methodName: "TryGetValue",
-                parameterName: "key",
-                argumentPosition: 0)]);
-
-        propertyAccessDescriptors.Add(new(KnownType.Microsoft_AspNetCore_Http_IFormCollection, "Files")); // Request.Form.Files...
     }
 
     // Check that the "Headers" expression in the Headers.TryGetValue("id", out _) invocation is of type IHeaderDictionary
     private static bool IsAccessedViaHeaderDictionary(SemanticModel model, ILanguageFacade language, SyntaxNode invocation) =>
         invocation is InvocationExpressionSyntax { Expression: { } expression }
         && GetLeftOfDot(expression) is { } left
-        && model.GetTypeInfo(left) is { Type: { } typeSymbol } && typeSymbol.Is(KnownType.Microsoft_AspNetCore_Http_IHeaderDictionary);
+        && model.GetTypeInfo(left) is { Type: { } typeSymbol } && typeSymbol.Is(Microsoft_AspNetCore_Http_IHeaderDictionary);
 
-    private static bool IsOverridingFilterMethods(IMethodSymbol method) =>
-        (method.GetOverriddenMember() ?? method).ExplicitOrImplicitInterfaceImplementations().Any(x => x is IMethodSymbol { ContainingType: { } container }
+    private static bool IsOverridingFilterMethods(ISymbol symbol) =>
+        symbol is IMethodSymbol method
+        && (method.GetOverriddenMember() ?? method).ExplicitOrImplicitInterfaceImplementations().Any(x => x is IMethodSymbol { ContainingType: { } container }
         && container.IsAny(
-                KnownType.Microsoft_AspNetCore_Mvc_Filters_IActionFilter,
-                KnownType.Microsoft_AspNetCore_Mvc_Filters_IAsyncActionFilter));
+                Microsoft_AspNetCore_Mvc_Filters_IActionFilter,
+                Microsoft_AspNetCore_Mvc_Filters_IAsyncActionFilter));
 
     private static bool OriginatesFromParameter(SemanticModel semanticModel, ArgumentSyntax argument) =>
         GetExpressionOfArgumentParent(argument) is { } parentExpression
@@ -246,10 +200,10 @@ public sealed class UseModelBinding : SonarDiagnosticAnalyzer<SyntaxKind>
         parameter.ContainingSymbol is IMethodSymbol { MethodKind: MethodKind.PropertyGet };
 
     private static bool IsIDictionaryStringStringValuesInvocation(IMethodSymbol method, string name) =>
-        method.Is(KnownType.System_Collections_Generic_IDictionary_TKey_TValue, name)
+        method.Is(System_Collections_Generic_IDictionary_TKey_TValue, name)
             && method.ContainingType.TypeArguments is { Length: 2 } typeArguments
-            && typeArguments[0].Is(KnownType.System_String)
-            && typeArguments[1].Is(KnownType.Microsoft_Extensions_Primitives_StringValues);
+            && typeArguments[0].Is(System_String)
+            && typeArguments[1].Is(Microsoft_Extensions_Primitives_StringValues);
 
     private readonly record struct ReportCandidate(string Message, Location Location, bool OriginatesFromParameter = false);
 }
