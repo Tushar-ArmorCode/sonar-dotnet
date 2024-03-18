@@ -31,29 +31,29 @@ public sealed class UseModelBinding : SonarDiagnosticAnalyzer<SyntaxKind>
     private const string UseModelBindingMessage = "Use model binding instead of accessing the raw request data";
     private const string UseIFormFileBindingMessage = "Use IFormFile or IFormFileCollection binding instead";
 
-private static readonly ArgumentDescriptor[] ArgumentDescriptors =
-    [
-        ElementAccess(Microsoft_AspNetCore_Http_IFormCollection, "Form", _ => true, 0),
-        MethodInvocation(Microsoft_AspNetCore_Http_IFormCollection, "TryGetValue", "key", 0),
-        MethodInvocation(Microsoft_AspNetCore_Http_IFormCollection, "ContainsKey", "key", 0),
-        ElementAccess(Microsoft_AspNetCore_Http_IHeaderDictionary, "Headers", IsGetterParameter, 0),
-        MethodInvocation(
-            x => IsIDictionaryStringStringValuesInvocation(x, "TryGetValue"),
-            (name, comparison) => string.Equals(name, "TryGetValue", comparison),
-            IsAccessedViaHeaderDictionary,
-            x => string.Equals(x.Name, "key", StringComparison.Ordinal),
-            (list, position) => list.Count == 2 && (position is 0 or null), RefKind.None),
-        MethodInvocation(
-            x => IsIDictionaryStringStringValuesInvocation(x, "ContainsKey"),
-            (name, comparison) => string.Equals(name, "ContainsKey", comparison),
-            IsAccessedViaHeaderDictionary,
-            x => string.Equals(x.Name, "key", StringComparison.Ordinal),
-            (list, _) => list.Count == 1, RefKind.None),
-        ElementAccess(Microsoft_AspNetCore_Http_IQueryCollection, "Query", _ => true, 0),
-        MethodInvocation(Microsoft_AspNetCore_Http_IQueryCollection, "TryGetValue", "key", 0),
-        ElementAccess(Microsoft_AspNetCore_Routing_RouteValueDictionary, "RouteValues", IsGetterParameter, 0),
-        MethodInvocation(Microsoft_AspNetCore_Routing_RouteValueDictionary, "TryGetValue", "key", 0),
-    ];
+    private static readonly ArgumentDescriptor[] ArgumentDescriptors =
+        [
+            ElementAccess(Microsoft_AspNetCore_Http_IFormCollection, "Form", _ => true, 0),
+            MethodInvocation(Microsoft_AspNetCore_Http_IFormCollection, "TryGetValue", "key", 0),
+            MethodInvocation(Microsoft_AspNetCore_Http_IFormCollection, "ContainsKey", "key", 0),
+            ElementAccess(Microsoft_AspNetCore_Http_IHeaderDictionary, "Headers", IsGetterParameter, 0),
+            MethodInvocation(
+                x => IsIDictionaryStringStringValuesInvocation(x, "TryGetValue"),
+                (name, comparison) => string.Equals(name, "TryGetValue", comparison),
+                IsAccessedViaHeaderDictionary,
+                x => string.Equals(x.Name, "key", StringComparison.Ordinal),
+                (list, position) => list.Count == 2 && (position is 0 or null), RefKind.None),
+            MethodInvocation(
+                x => IsIDictionaryStringStringValuesInvocation(x, "ContainsKey"),
+                (name, comparison) => string.Equals(name, "ContainsKey", comparison),
+                IsAccessedViaHeaderDictionary,
+                x => string.Equals(x.Name, "key", StringComparison.Ordinal),
+                (list, _) => list.Count == 1, RefKind.None),
+            ElementAccess(Microsoft_AspNetCore_Http_IQueryCollection, "Query", _ => true, 0),
+            MethodInvocation(Microsoft_AspNetCore_Http_IQueryCollection, "TryGetValue", "key", 0),
+            ElementAccess(Microsoft_AspNetCore_Routing_RouteValueDictionary, "RouteValues", IsGetterParameter, 0),
+            MethodInvocation(Microsoft_AspNetCore_Routing_RouteValueDictionary, "TryGetValue", "key", 0),
+        ];
 
     private static readonly MemberDescriptor[] PropertyAccessDescriptors =
         [
