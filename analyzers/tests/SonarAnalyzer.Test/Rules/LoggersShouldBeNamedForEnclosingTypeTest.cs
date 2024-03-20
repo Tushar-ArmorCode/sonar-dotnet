@@ -52,6 +52,27 @@ public class LoggersShouldBeNamedForEnclosingTypeTest
             .WithTopLevelStatements()
             .Verify();
 
+#if NET
+    [TestMethod]
+    public void LoggerShouldBeNamedForEnclosingType_LazyIgnored_CS() =>
+        Builder
+            .AddSnippet("""
+                using System;
+                using Microsoft.Extensions.Logging;
+
+                ILoggerFactory factory = null;
+
+                new Lazy<ILogger>(() => factory.CreateLogger(typeof(Foo).Name));    // Compliant
+                new Lazy<ILogger>(factory.CreateLogger(nameof(Foo)));               // Compliant
+                new Lazy<ILogger>(factory.CreateLogger(typeof(Foo)));               // Compliant
+
+                class Foo {}
+                """)
+            .AddReferences(NuGetMetadataReference.MicrosoftExtensionsLoggingAbstractions())
+            .WithTopLevelStatements()
+            .Verify();
+#endif
+
     [TestMethod]
     public void LoggersShouldBeNamedForEnclosingType_NLog_CS() =>
         Builder

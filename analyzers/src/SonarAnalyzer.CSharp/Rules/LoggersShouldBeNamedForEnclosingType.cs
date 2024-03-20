@@ -123,8 +123,9 @@ public sealed class LoggersShouldBeNamedForEnclosingType : SonarDiagnosticAnalyz
         model.GetTypeInfo(argument).Type is { } argumentType
         && EnclosingTypeSymbol(model, enclosingNode) is { } enclosingType
         && (enclosingType.Equals(argumentType)
-            || argumentType.TypeKind is TypeKind.TypeParameter  // Do not raise on CreateLogger<T> if T is not concrete
-            || enclosingType.DerivesOrImplementsAny(Loggers));  // Do not raise on Decorator pattern
+            || argumentType.TypeKind is TypeKind.TypeParameter      // Do not raise on CreateLogger<T> if T is not concrete
+            || enclosingType.DerivesOrImplementsAny(Loggers)        // Do not raise on Decorator pattern
+            || enclosingType.DerivesFrom(KnownType.System_Lazy));   // Do not raise on lazy-evaluated loggers.
 
     private static ITypeSymbol EnclosingTypeSymbol(SemanticModel model, SyntaxNode enclosingNode) =>
         (model.GetDeclaredSymbol(enclosingNode) ?? model.GetSymbolInfo(enclosingNode).Symbol).GetSymbolType();
