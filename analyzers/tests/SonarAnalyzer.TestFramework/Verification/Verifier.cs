@@ -168,109 +168,111 @@ internal class Verifier
     public IEnumerable<CompilationData> Compile(bool concurrentAnalysis)
     {
         using var scope = new EnvironmentVariableScope { EnableConcurrentAnalysis = concurrentAnalysis };
+        // FIXME: This will mostly
         return builder.IsRazor
-            ? CompileRazor()
+            ?
             : CreateProject(concurrentAnalysis).Solution.Compile(builder.ParseOptions.ToArray()).Select(x => new CompilationData(x, null));
     }
 
-    private IEnumerable<CompilationData> CompileRazor()
-    {
-        if (!MSBuildLocator.IsRegistered)
-        {
-            MSBuildLocator.RegisterDefaults();
-        }
-        using var workspace = MSBuildWorkspace.Create();
-        workspace.WorkspaceFailed += (_, failure) => Console.WriteLine(failure.Diagnostic);
+    //private IEnumerable<CompilationData> CompileRazor()
+    //{
+    //    if (!MSBuildLocator.IsRegistered)
+    //    {
+    //        MSBuildLocator.RegisterDefaults();
+    //    }
+    //    using var workspace = MSBuildWorkspace.Create();
+    //    workspace.WorkspaceFailed += (_, failure) => Console.WriteLine(failure.Diagnostic);
 
-        // Copy razor project directory and test case files to a temporary build location
-        var tempPath = Path.Combine(Path.GetTempPath(), $"ut-razor-{Guid.NewGuid()}");
-        Directory.CreateDirectory(tempPath);
-        try
-        {
-            foreach (var langVersion in builder.ParseOptions.Cast<CSharpParseOptions>().Select(LangVersion))
-            {
-                var projectRoot = Path.Combine(tempPath, langVersion);
-                Directory.CreateDirectory(projectRoot);
-                var csProjPath = PrepareRazorProject(projectRoot, langVersion);
-                var razorFiles = PrepareRazorFiles(projectRoot);
-                // To avoid reference loading issues, ensure that the project references are restored before compilation.
-                if (RestorePackages(csProjPath, projectRoot))
-                {
-                    yield return new(workspace.OpenProjectAsync(csProjPath).Result.GetCompilationAsync().Result, razorFiles.ToArray());
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Failed to restore project {csProjPath}.");
-                }
-            }
-        }
-        finally
-        {
-            Directory.Delete(tempPath, true);
-        }
+    //    // Copy razor project directory and test case files to a temporary build location
+    //    var tempPath = Path.Combine(Path.GetTempPath(), $"ut-razor-{Guid.NewGuid()}");
+    //    Directory.CreateDirectory(tempPath);
+    //    try
+    //    {
+    //        foreach (var langVersion in builder.ParseOptions.Cast<CSharpParseOptions>().Select(LangVersion))
+    //        {
+    //            var projectRoot = Path.Combine(tempPath, langVersion);
+    //            Directory.CreateDirectory(projectRoot);
+    //            var csProjPath = PrepareRazorProject(projectRoot, langVersion);
+    //            var razorFiles = PrepareRazorFiles(projectRoot);
+    //            // To avoid reference loading issues, ensure that the project references are restored before compilation.
+    //            if (RestorePackages(csProjPath, projectRoot))
+    //            {
+    //                yield return new(workspace.OpenProjectAsync(csProjPath).Result.GetCompilationAsync().Result, razorFiles.ToArray());
+    //            }
+    //            else
+    //            {
+    //                throw new InvalidOperationException($"Failed to restore project {csProjPath}.");
+    //            }
+    //        }
+    //    }
+    //    finally
+    //    {
+    //        Directory.Delete(tempPath, true);
+    //    }
 
-        static string LangVersion(CSharpParseOptions options) =>
-            options.LanguageVersion switch
-            {
-                // 5 and 6 should not be needed here
-                // 7 also does not support with Nullable context
-                // 8 and 9 do not support global using directives
-                LanguageVersion.CSharp10 => "10.0",
-                LanguageVersion.CSharp11 => "11.0",
-                LanguageVersion.CSharp12 => "12.0",
-                _ => throw new NotSupportedException($"Unexpected language version {options.LanguageVersion}. Update this switch to add the new version.")
-            };
-    }
+    //    static string LangVersion(CSharpParseOptions options) =>
+    //        options.LanguageVersion switch
+    //        {
+    //            // 5 and 6 should not be needed here
+    //            // 7 also does not support with Nullable context
+    //            // 8 and 9 do not support global using directives
+    //            LanguageVersion.CSharp10 => "10.0",
+    //            LanguageVersion.CSharp11 => "11.0",
+    //            LanguageVersion.CSharp12 => "12.0",
+    //            _ => throw new NotSupportedException($"Unexpected language version {options.LanguageVersion}. Update this switch to add the new version.")
+    //        };
+    ////}
 
-    private string PrepareRazorProject(string projectRoot, string langVersion)
-    {
-        // To improve: Paths are currently relative to entry assembly => needs to be duplicated in different projects for now.
-        foreach (var file in Directory.GetFiles(@"TestCases\Razor\EmptyProject"))
-        {
-            File.Copy(file, Path.Combine(projectRoot, Path.GetFileName(file)));
-        }
-        var csProjPath = Path.Combine(projectRoot, "EmptyProject.csproj");
-        var xml = XElement.Load(csProjPath);
-        xml.Descendants("LangVersion").Single().Value = langVersion;
-        var references = xml.Descendants("ItemGroup").Single();
-        foreach (var reference in builder.References)
-        {
-            references.Add(new XElement("Reference", new XAttribute("Include", reference.Display)));
-        }
-        xml.Save(csProjPath);
-        return csProjPath;
-    }
+    //private string PrepareRazorProject(string projectRoot, string langVersion)
+    //{
+    //    // To improve: Paths are currently relative to entry assembly => needs to be duplicated in different projects for now.
+    //    foreach (var file in Directory.GetFiles(@"TestCases\Razor\EmptyProject"))
+    //    {
+    //        File.Copy(file, Path.Combine(projectRoot, Path.GetFileName(file)));
+    //    }
+    //    var csProjPath = Path.Combine(projectRoot, "EmptyProject.csproj");
+    //    var xml = XElement.Load(csProjPath);
+    //    xml.Descendants("LangVersion").Single().Value = langVersion;
+    //    var references = xml.Descendants("ItemGroup").Single();
+    //    foreach (var reference in builder.References)
+    //    {
+    //        references.Add(new XElement("Reference", new XAttribute("Include", reference.Display)));
+    //    }
+    //    xml.Save(csProjPath);
+    //    return csProjPath;
+    //}
 
-    private List<string> PrepareRazorFiles(string projectRoot)
-    {
-        var razorFiles = new List<string>();
-        var snippetCount = 0;
-        // To improve: Paths are currently relative to entry assembly => needs to be duplicated in different projects for now.
-        foreach (var file in builder.Paths.Select(TestCasePath))
-        {
-            var filePath = Path.Combine(projectRoot, Path.GetFileName(file));
-            File.Copy(file, filePath);
-            if (IsRazorOrCshtml(filePath))
-            {
-                razorFiles.Add(filePath);
-            }
-        }
-        foreach (var snippet in builder.Snippets)
-        {
-            var filePath = Path.Combine(projectRoot, snippet.FileName ?? $"snippet.{snippetCount++}{language.FileExtension}");
-            File.WriteAllText(filePath, snippet.Content);
-            if (IsRazorOrCshtml(filePath))
-            {
-                razorFiles.Add(filePath);
-            }
-        }
-        return razorFiles;
-    }
+    //private List<string> PrepareRazorFiles(string projectRoot)
+    //{
+    //    var razorFiles = new List<string>();
+    //    var snippetCount = 0;
+    //    // To improve: Paths are currently relative to entry assembly => needs to be duplicated in different projects for now.
+    //    foreach (var file in builder.Paths.Select(TestCasePath))
+    //    {
+    //        var filePath = Path.Combine(projectRoot, Path.GetFileName(file));
+    //        File.Copy(file, filePath);
+    //        if (IsRazorOrCshtml(filePath))
+    //        {
+    //            razorFiles.Add(filePath);
+    //        }
+    //    }
+    //    foreach (var snippet in builder.Snippets)
+    //    {
+    //        var filePath = Path.Combine(projectRoot, snippet.FileName ?? $"snippet.{snippetCount++}{language.FileExtension}");
+    //        File.WriteAllText(filePath, snippet.Content);
+    //        if (IsRazorOrCshtml(filePath))
+    //        {
+    //            razorFiles.Add(filePath);
+    //        }
+    //    }
+    //    return razorFiles;
+    //}
 
     private ProjectBuilder CreateProject(bool concurrentAnalysis)
     {
         var paths = builder.Paths.Select(TestCasePath).ToArray();
         return SolutionBuilder.Create()
+            // FIXME: Extend this
             .AddProject(language, builder.OutputKind)
             .AddDocuments(paths)
             .AddDocuments(concurrentAnalysis && builder.AutogenerateConcurrentFiles ? CreateConcurrencyTest(paths) : Enumerable.Empty<string>())
@@ -361,18 +363,18 @@ internal class Verifier
 
     public sealed record CompilationData(Compilation Compilation, string[] AdditionalSourceFiles);
 
-    private static bool RestorePackages(string path, string workingDirectory)
-    {
-        using var process = new Process();
-        process.StartInfo = new ProcessStartInfo
-            {
-                FileName = Environment.GetEnvironmentVariable("DOTNET_PATH") ?? "dotnet",
-                Arguments = $"restore \"{path}\"",
-                WorkingDirectory = workingDirectory
-            };
+    //private static bool RestorePackages(string path, string workingDirectory)
+    //{
+    //    using var process = new Process();
+    //    process.StartInfo = new ProcessStartInfo
+    //        {
+    //            FileName = Environment.GetEnvironmentVariable("DOTNET_PATH") ?? "dotnet",
+    //            Arguments = $"restore \"{path}\"",
+    //            WorkingDirectory = workingDirectory
+    //        };
 
-        process.Start();
-        process.WaitForExit();
-        return process.ExitCode == 0;
-    }
+    //    process.Start();
+    //    process.WaitForExit();
+    //    return process.ExitCode == 0;
+    //}
 }
