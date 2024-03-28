@@ -168,8 +168,10 @@ internal class Verifier
     public IEnumerable<CompilationData> Compile(bool concurrentAnalysis)
     {
         using var scope = new EnvironmentVariableScope { EnableConcurrentAnalysis = concurrentAnalysis };
+        // FIXME: There's probably a build locator (or other) dependency that will go away
         // FIXME: This will mostly
-        return builder.IsRazor
+        // FIXME: Embedding is fine at this stage. Ticket should be created to improve and cross-linked with https://github.com/SonarSource/sonar-dotnet-autoscan/issues/784 and taclked if there's a time (ideally, by finding a NuGet)
+        return builder.IsRazor  // FIXME: This property will likely not be needed anymore, as we'll do the trick everytime
             ?
             : CreateProject(concurrentAnalysis).Solution.Compile(builder.ParseOptions.ToArray()).Select(x => new CompilationData(x, null));
     }
