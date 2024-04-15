@@ -22,7 +22,7 @@
   <PropertyGroup>
     <WeaverConfiguration Condition="$(MergeAssemblies) == 'True'">
       <Weavers>
-        <ILMerge IncludeAssemblies="SonarAnalyzer.CSharp" />
+        <ILMerge IncludeAssemblies="SonarAnalyzer|SonarAnalyzer.CSharp" />
       </Weavers>
     </WeaverConfiguration>
   </PropertyGroup>
@@ -49,8 +49,6 @@
   <Target Name="CopyBinaries" AfterTargets="Build">
     <ItemGroup>
       <BinariesToCopy Include="$(OutputPath)Google.Protobuf.dll" />
-      <BinariesToCopy Include="$(OutputPath)SonarAnalyzer.dll" />
-      <BinariesToCopy Include="$(OutputPath)SonarAnalyzer.CFG.dll" />
       <BinariesToCopy Include="$(OutputPath)$(TargetFileName)" />
     </ItemGroup>
     <Copy SourceFiles="@(BinariesToCopy)" DestinationFolder="$(BinariesFolderInternal)" />

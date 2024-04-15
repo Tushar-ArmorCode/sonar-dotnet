@@ -23,8 +23,6 @@
   </metadata>
   <files>
     <file src="binaries\internal\Google.Protobuf.dll" target="analyzers" />
-    <file src="binaries\internal\SonarAnalyzer.dll" target="analyzers" />
-    <file src="binaries\internal\SonarAnalyzer.CFG.dll" target="analyzers" />
     <file src="binaries\internal\Internal.SonarAnalyzer.CSharp.Styling.dll" target="analyzers" />
     <file src="logos\sonarsource_64.png" target="images\" />
     <file src="..\..\THIRD-PARTY-NOTICES.txt" target="license\" />
