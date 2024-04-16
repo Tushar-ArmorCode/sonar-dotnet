@@ -25,7 +25,7 @@ public static class MultipleVariableDeclarationConstants
     internal const string DiagnosticId = "S1659";
 }
 
-public abstract class MultipleVariableDeclarationBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class MultipleVariableDeclarationBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
 {
     protected override string MessageFormat => "Declare '{0}' in a separate statement.";

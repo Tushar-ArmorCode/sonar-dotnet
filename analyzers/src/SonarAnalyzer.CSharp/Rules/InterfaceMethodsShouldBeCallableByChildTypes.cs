@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class InterfaceMethodsShouldBeCallableByChildTypes : SonarDiagnosticAnalyzer
+    public sealed class InterfaceMethodsShouldBeCallableByChildTypes : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4039";
         private const string MessageFormat = "Make '{0}' sealed, change to a non-explicit declaration or provide a " +

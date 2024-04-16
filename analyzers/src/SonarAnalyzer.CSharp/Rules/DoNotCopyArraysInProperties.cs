@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotCopyArraysInProperties : SonarDiagnosticAnalyzer
+    public sealed class DoNotCopyArraysInProperties : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2365";
         private const string MessageFormat = "Refactor '{0}' into a method, properties should not copy collections.";

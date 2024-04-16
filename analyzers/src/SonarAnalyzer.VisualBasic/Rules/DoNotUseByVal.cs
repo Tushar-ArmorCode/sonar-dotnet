@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class DoNotUseByVal : SonarDiagnosticAnalyzer
+    public sealed class DoNotUseByVal : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3860";
         private const string MessageFormat = "Remove this redundant 'ByVal' modifier.";

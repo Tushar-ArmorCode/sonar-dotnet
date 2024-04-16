@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class OptionalRefOutParameter : SonarDiagnosticAnalyzer
+    public sealed class OptionalRefOutParameter : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3447";
         private const string MessageFormat = "Remove the 'Optional' attribute, it cannot be used with '{0}'.";

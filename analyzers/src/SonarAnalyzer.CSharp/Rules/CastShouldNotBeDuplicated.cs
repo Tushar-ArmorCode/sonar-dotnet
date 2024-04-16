@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CastShouldNotBeDuplicated : SonarDiagnosticAnalyzer
+    public sealed class CastShouldNotBeDuplicated : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3247";
         private const string MessageFormat = "{0}";

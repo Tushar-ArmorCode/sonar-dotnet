@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CastConcreteTypeToInterface : SonarDiagnosticAnalyzer
+    public sealed class CastConcreteTypeToInterface : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3215";
         private const string MessageFormat = "Remove this cast and edit the interface to add the missing functionality.";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class ClassNamedExceptionBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class ClassNamedExceptionBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
 {
     private const string DiagnosticId = "S2166";

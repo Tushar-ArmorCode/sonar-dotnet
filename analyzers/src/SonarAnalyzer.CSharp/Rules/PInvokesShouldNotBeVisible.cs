@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PInvokesShouldNotBeVisible : SonarDiagnosticAnalyzer
+    public sealed class PInvokesShouldNotBeVisible : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4214";
         private const string MessageFormat = "Make this 'P/Invoke' method private or internal.";

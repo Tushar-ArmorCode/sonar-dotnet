@@ -23,7 +23,7 @@ using MemberUsage = SonarAnalyzer.Common.NodeSymbolAndModel<Microsoft.CodeAnalys
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class NotAssignedPrivateMember : SonarDiagnosticAnalyzer
+    public sealed class NotAssignedPrivateMember : InternalSonarDiagnosticAnalyzer
     {
         /*
          CS0649 reports the same on internal fields. So that's wider in scope, but that's not a live Roslyn analyzer,

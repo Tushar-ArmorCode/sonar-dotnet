@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class UnsignedTypesUsage : SonarDiagnosticAnalyzer
+    public sealed class UnsignedTypesUsage : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2374";
         private const string MessageFormat = "Change this unsigned type to '{0}'.";

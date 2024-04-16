@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ClassWithEqualityShouldImplementIEquatable : SonarDiagnosticAnalyzer
+    public sealed class ClassWithEqualityShouldImplementIEquatable : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3897";
         private const string MessageFormat = "Implement 'IEquatable<{0}>'.";

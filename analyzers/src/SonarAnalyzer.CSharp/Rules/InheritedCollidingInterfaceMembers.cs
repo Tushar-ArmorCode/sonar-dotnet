@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class InheritedCollidingInterfaceMembers : SonarDiagnosticAnalyzer
+    public sealed class InheritedCollidingInterfaceMembers : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3444";
         private const string MessageFormat = "Rename or add member{1} {0} to this interface to resolve ambiguities.";

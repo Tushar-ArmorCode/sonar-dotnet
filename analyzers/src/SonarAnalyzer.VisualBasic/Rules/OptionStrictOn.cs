@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class OptionStrictOn : SonarDiagnosticAnalyzer
+    public sealed class OptionStrictOn : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S6145";
         private const string MessageFormat = "{0}";

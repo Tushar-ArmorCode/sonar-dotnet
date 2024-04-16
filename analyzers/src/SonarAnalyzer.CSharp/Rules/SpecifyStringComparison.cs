@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SpecifyStringComparison : SonarDiagnosticAnalyzer
+    public sealed class SpecifyStringComparison : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4058";
         private const string MessageFormat = "Change this call to '{0}' to an overload that accepts a " +

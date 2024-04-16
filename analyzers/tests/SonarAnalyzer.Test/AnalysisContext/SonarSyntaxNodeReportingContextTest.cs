@@ -109,7 +109,7 @@ public class SonarSyntaxNodeReportingContextTest
     }
 
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    private sealed class TestAnalyzer : SonarDiagnosticAnalyzer
+    private sealed class TestAnalyzer : InternalSonarDiagnosticAnalyzer
     {
         private readonly SyntaxKind[] syntaxKinds;
         private readonly Func<SonarSyntaxNodeReportingContext, string> message;

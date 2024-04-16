@@ -24,7 +24,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class PrivateStaticMethodUsedOnlyByNestedClass : SonarDiagnosticAnalyzer
+public sealed class PrivateStaticMethodUsedOnlyByNestedClass : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S3398";
     private const string MessageFormat = "Move this method inside '{0}'.";

@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ParameterValidationInAsyncShouldBeWrapped : SonarDiagnosticAnalyzer
+    public sealed class ParameterValidationInAsyncShouldBeWrapped : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4457";
         private const string MessageFormat = "Split this method into two, one handling parameters check and the other handling the asynchronous code.";

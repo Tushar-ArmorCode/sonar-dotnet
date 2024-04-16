@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class OverrideGetHashCodeOnOverridingEquals : SonarDiagnosticAnalyzer
+    public sealed class OverrideGetHashCodeOnOverridingEquals : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1206";
         private const string MessageFormat = "This {0} overrides '{1}' and should therefore also override '{2}'.";

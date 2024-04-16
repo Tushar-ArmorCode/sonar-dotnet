@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PrivateFieldUsedAsLocalVariable : SonarDiagnosticAnalyzer
+    public sealed class PrivateFieldUsedAsLocalVariable : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1450";
         private const string MessageFormat = "Remove the field '{0}' and declare it as a local variable in the relevant methods.";

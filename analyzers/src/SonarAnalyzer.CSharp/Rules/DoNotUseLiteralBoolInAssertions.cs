@@ -23,7 +23,7 @@ using SonarAnalyzer.CFG.Helpers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotUseLiteralBoolInAssertions : SonarDiagnosticAnalyzer
+    public sealed class DoNotUseLiteralBoolInAssertions : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2701";
         private const string MessageFormat = "Remove or correct this assertion.";

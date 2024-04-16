@@ -23,7 +23,7 @@ using System.IO;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StreamReadStatement : SonarDiagnosticAnalyzer
+    public sealed class StreamReadStatement : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2674";
         private const string MessageFormat = "Check the return value of the '{0}' call to see how many bytes were read.";

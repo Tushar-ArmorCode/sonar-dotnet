@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DurableEntityInterfaceRestrictions : SonarDiagnosticAnalyzer
+    public sealed class DurableEntityInterfaceRestrictions : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S6424";
         private const string MessageFormat = "Use valid entity interface. {0} {1}.";

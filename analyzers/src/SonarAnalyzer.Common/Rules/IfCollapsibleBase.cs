@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class IfCollapsibleBase : SonarDiagnosticAnalyzer
+    public abstract class IfCollapsibleBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S1066";
         protected const string MessageFormat = "Merge this if statement with the enclosing one.";

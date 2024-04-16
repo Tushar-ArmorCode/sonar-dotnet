@@ -23,7 +23,7 @@ using SonarAnalyzer.Helpers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class WcfMissingContractAttribute : SonarDiagnosticAnalyzer
+    public sealed class WcfMissingContractAttribute : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3597";
         private const string MessageFormat = "Add the '{0}' attribute to {1}.";

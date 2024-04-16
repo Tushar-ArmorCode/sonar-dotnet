@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class CatchRethrowBase<TCatchClause> : SonarDiagnosticAnalyzer
+    public abstract class CatchRethrowBase<TCatchClause> : InternalSonarDiagnosticAnalyzer
             where TCatchClause : SyntaxNode
     {
         internal const string DiagnosticId = "S2737";

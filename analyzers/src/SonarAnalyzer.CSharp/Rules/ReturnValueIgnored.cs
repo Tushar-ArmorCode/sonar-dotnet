@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ReturnValueIgnored : SonarDiagnosticAnalyzer
+    public sealed class ReturnValueIgnored : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2201";
         private const string MessageFormat = "Use the return value of method '{0}'.";

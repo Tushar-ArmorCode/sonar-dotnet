@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class PureAttributeOnVoidMethodBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class PureAttributeOnVoidMethodBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
     {
         protected const string DiagnosticId = "S3603";

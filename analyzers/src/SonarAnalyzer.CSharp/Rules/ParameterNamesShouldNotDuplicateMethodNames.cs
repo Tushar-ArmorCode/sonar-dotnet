@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ParameterNamesShouldNotDuplicateMethodNames : SonarDiagnosticAnalyzer
+    public sealed class ParameterNamesShouldNotDuplicateMethodNames : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3872";
         private const string MessageFormat = "Rename the parameter '{0}' so that it does not duplicate the method name.";

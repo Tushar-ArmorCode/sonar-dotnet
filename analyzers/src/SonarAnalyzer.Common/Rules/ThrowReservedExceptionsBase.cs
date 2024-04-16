@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class ThrowReservedExceptionsBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class ThrowReservedExceptionsBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
 {
     protected const string DiagnosticId = "S112";

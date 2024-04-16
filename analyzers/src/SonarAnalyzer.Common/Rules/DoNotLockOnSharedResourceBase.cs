@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class DoNotLockOnSharedResourceBase : SonarDiagnosticAnalyzer
+    public abstract class DoNotLockOnSharedResourceBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S2551";
         protected const string MessageFormat = "Lock on a dedicated object instance instead.";

@@ -23,7 +23,7 @@ using System.IO;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MethodOverloadOptionalParameter : SonarDiagnosticAnalyzer
+    public sealed class MethodOverloadOptionalParameter : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3427";
         private const string MessageFormat =

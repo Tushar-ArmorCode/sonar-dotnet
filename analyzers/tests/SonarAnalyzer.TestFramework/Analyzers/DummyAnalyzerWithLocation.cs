@@ -25,7 +25,7 @@ using SonarAnalyzer.AnalysisContext;
 namespace SonarAnalyzer.TestFramework.Analyzers;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public class DummyAnalyzerWithLocation : SonarDiagnosticAnalyzer
+public class DummyAnalyzerWithLocation : InternalSonarDiagnosticAnalyzer
 {
     private readonly DiagnosticDescriptor rule;
 

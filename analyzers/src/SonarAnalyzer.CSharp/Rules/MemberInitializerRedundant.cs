@@ -25,7 +25,7 @@ using SymbolWithInitializer = System.Collections.Generic.KeyValuePair<Microsoft.
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed partial class MemberInitializerRedundant : SonarDiagnosticAnalyzer
+    public sealed partial class MemberInitializerRedundant : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3604";
         private const string InstanceMemberMessage = "Remove the member initializer, all constructors set an initial value for the member.";

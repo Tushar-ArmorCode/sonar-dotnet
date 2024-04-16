@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class StringConcatenationWithPlus : SonarDiagnosticAnalyzer
+    public sealed class StringConcatenationWithPlus : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1645";
         private const string MessageFormat = "Switch this use of the '+' operator to the '&'.";

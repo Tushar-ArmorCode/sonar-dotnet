@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PreferJaggedArraysOverMultidimensional : SonarDiagnosticAnalyzer
+    public sealed class PreferJaggedArraysOverMultidimensional : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3967";
         private const string MessageFormat = "Change this multidimensional array to a jagged array.";

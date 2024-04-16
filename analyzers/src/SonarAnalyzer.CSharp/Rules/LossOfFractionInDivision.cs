@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class LossOfFractionInDivision : SonarDiagnosticAnalyzer
+    public sealed class LossOfFractionInDivision : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2184";
         private const string MessageFormat = "Cast one of the operands of this division to '{0}'.";

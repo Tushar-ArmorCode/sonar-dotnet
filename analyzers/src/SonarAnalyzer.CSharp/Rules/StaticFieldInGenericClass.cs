@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StaticFieldInGenericClass : SonarDiagnosticAnalyzer
+    public sealed class StaticFieldInGenericClass : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2743";
         private const string MessageFormat = "A static field in a generic type is not shared among instances of different close constructed types.";

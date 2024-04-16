@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ForLoopConditionAlwaysFalse : SonarDiagnosticAnalyzer
+    public sealed class ForLoopConditionAlwaysFalse : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2252";
         private const string MessageFormat = "This loop will never execute.";

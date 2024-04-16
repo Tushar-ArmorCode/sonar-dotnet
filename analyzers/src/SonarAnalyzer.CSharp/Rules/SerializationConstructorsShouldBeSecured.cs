@@ -22,7 +22,7 @@ namespace SonarAnalyzer.Rules.CSharp
 {
     [Obsolete("This rule has been deprecated since 9.14")]
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SerializationConstructorsShouldBeSecured : SonarDiagnosticAnalyzer
+    public sealed class SerializationConstructorsShouldBeSecured : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4212";
         private const string MessageFormat = "Secure this serialization constructor.";

@@ -23,7 +23,7 @@ using System.Collections.Concurrent;
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class SpecifyRouteAttribute() : SonarDiagnosticAnalyzer<SyntaxKind>(DiagnosticId)
+public sealed class SpecifyRouteAttribute() : InternalSonarDiagnosticAnalyzer<SyntaxKind>(DiagnosticId)
 {
     private const string DiagnosticId = "S6934";
 

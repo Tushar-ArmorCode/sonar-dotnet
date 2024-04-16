@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MagicNumberShouldNotBeUsed : SonarDiagnosticAnalyzer
+    public sealed class MagicNumberShouldNotBeUsed : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S109";
         private const string MessageFormat = "Assign this magic number '{0}' to a well-named variable or constant, and use that instead.";

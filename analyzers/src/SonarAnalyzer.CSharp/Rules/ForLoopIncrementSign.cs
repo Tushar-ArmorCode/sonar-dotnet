@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ForLoopIncrementSign : SonarDiagnosticAnalyzer
+    public sealed class ForLoopIncrementSign : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2251";
         private const string MessageFormat = "'{0}' is {1}remented and will never reach 'stop condition'.";

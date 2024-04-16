@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class EndStatementUsage : SonarDiagnosticAnalyzer
+    public sealed class EndStatementUsage : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1147";
         private const string MessageFormat = "Remove this call to 'End' or ensure it is really required.";

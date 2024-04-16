@@ -25,7 +25,7 @@ using SonarAnalyzer.LiveVariableAnalysis.CSharp;
 
 namespace SonarAnalyzer.Rules.CSharp
 {
-    public partial class DeadStores : SonarDiagnosticAnalyzer
+    public partial class DeadStores : InternalSonarDiagnosticAnalyzer
     {
         private class SonarChecker : CheckerBase<IControlFlowGraph, Block>
         {

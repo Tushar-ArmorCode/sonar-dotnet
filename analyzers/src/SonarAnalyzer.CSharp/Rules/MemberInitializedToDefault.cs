@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MemberInitializedToDefault : SonarDiagnosticAnalyzer
+    public sealed class MemberInitializedToDefault : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3052";
         private const string MessageFormat = "Remove this initialization to '{0}', the compiler will do that for you.";

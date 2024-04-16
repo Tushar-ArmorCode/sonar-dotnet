@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class ArrayPassedAsParamsBase<TSyntaxKind, TArgumentNode> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class ArrayPassedAsParamsBase<TSyntaxKind, TArgumentNode> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
     where TArgumentNode : SyntaxNode
 {

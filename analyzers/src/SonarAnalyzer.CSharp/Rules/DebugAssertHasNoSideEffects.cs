@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DebugAssertHasNoSideEffects : SonarDiagnosticAnalyzer
+    public sealed class DebugAssertHasNoSideEffects : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3346";
         private const string MessageFormat = "Expressions used in 'Debug.Assert' should not produce side effects.";

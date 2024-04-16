@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ConditionalSimplification : SonarDiagnosticAnalyzer
+    public sealed class ConditionalSimplification : InternalSonarDiagnosticAnalyzer
     {
         internal const string SimplifiedOperatorKey = "SimplifiedOperator";
         internal const string IsCoalesceAssignmentSupportedKey = "IsNullCoalesceAssignmentSupported";

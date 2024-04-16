@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules
 {
     public abstract class DoNotCallInsecureSecurityAlgorithmBase<TSyntaxKind, TInvocationExpressionSyntax, TArgumentListSyntax, TArgumentSyntax>
-        : SonarDiagnosticAnalyzer
+        : InternalSonarDiagnosticAnalyzer
         where TSyntaxKind : struct
         where TInvocationExpressionSyntax : SyntaxNode
         where TArgumentListSyntax : SyntaxNode

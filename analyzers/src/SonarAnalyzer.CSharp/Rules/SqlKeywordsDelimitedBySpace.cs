@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SqlKeywordsDelimitedBySpace : SonarDiagnosticAnalyzer
+    public sealed class SqlKeywordsDelimitedBySpace : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2857";
         private const string MessageFormat = "Add a space before '{0}'.";

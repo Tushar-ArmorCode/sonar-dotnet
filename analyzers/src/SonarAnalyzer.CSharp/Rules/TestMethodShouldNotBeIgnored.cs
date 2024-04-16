@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TestMethodShouldNotBeIgnored : SonarDiagnosticAnalyzer
+    public sealed class TestMethodShouldNotBeIgnored : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1607";
         private const string MessageFormat = "Either remove this 'Ignore' attribute or add an explanation about why this test is ignored.";

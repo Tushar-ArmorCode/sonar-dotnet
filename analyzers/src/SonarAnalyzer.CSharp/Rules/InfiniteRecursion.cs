@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public partial class InfiniteRecursion : SonarDiagnosticAnalyzer
+    public partial class InfiniteRecursion : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2190";
         private const string MessageFormat = "Add a way to break out of this {0}.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseStringIsNullOrEmpty : SonarDiagnosticAnalyzer
+    public sealed class UseStringIsNullOrEmpty : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3256";
         private const string MessageFormat =

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TypeMemberVisibility : SonarDiagnosticAnalyzer
+    public sealed class TypeMemberVisibility : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3059";
         private const string MessageFormat = "Types should not have members with visibility set higher than the type's visibility";

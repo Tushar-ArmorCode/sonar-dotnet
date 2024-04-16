@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ExpectedExceptionAttributeShouldNotBeUsedBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class ExpectedExceptionAttributeShouldNotBeUsedBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
     {
         internal const string DiagnosticId = "S3431";

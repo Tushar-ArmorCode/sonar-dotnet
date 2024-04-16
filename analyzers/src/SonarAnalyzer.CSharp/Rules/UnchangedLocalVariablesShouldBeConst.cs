@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UnchangedLocalVariablesShouldBeConst : SonarDiagnosticAnalyzer
+public sealed class UnchangedLocalVariablesShouldBeConst : InternalSonarDiagnosticAnalyzer
 {
     internal const string DiagnosticId = "S3353";
     private const string MessageFormat = "Add the 'const' modifier to '{0}'{1}."; // {1} is a placeholder for optional MessageFormatVarHint

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.CSharp.Styling.Common;
 
-public abstract class StylingAnalyzer : SonarDiagnosticAnalyzer
+public abstract class StylingAnalyzer : InternalSonarDiagnosticAnalyzer
 {
     protected DiagnosticDescriptor Rule { get; }
 

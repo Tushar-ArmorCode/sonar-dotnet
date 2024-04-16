@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class DoNotNestTernaryOperatorsBase : SonarDiagnosticAnalyzer
+    public abstract class DoNotNestTernaryOperatorsBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S3358";
     }

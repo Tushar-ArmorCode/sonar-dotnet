@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AssignmentInsideSubExpression : SonarDiagnosticAnalyzer
+    public sealed class AssignmentInsideSubExpression : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1121";
         private const string MessageFormat = "Extract the assignment of '{0}' from this expression.";

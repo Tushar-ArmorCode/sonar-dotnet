@@ -22,7 +22,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class CommentKeywordBase : SonarDiagnosticAnalyzer
+    public abstract class CommentKeywordBase : InternalSonarDiagnosticAnalyzer
     {
         private const string ToDoKeyword = "TODO";
         protected const string ToDoDiagnosticId = "S1135";

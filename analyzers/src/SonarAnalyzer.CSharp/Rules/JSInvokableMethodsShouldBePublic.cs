@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class JSInvokableMethodsShouldBePublic : SonarDiagnosticAnalyzer
+public sealed class JSInvokableMethodsShouldBePublic : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S6798";
     private const string MessageFormat = "Methods marked as 'JSInvokable' should be 'public'.";

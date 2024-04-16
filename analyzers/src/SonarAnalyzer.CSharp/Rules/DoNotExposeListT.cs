@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotExposeListT : SonarDiagnosticAnalyzer
+    public sealed class DoNotExposeListT : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3956";
         private const string MessageFormat = "Refactor this {0} to use a generic collection designed for inheritance.";

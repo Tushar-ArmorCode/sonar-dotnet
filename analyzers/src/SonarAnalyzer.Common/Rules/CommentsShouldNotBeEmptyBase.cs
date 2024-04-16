@@ -23,7 +23,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class CommentsShouldNotBeEmptyBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class CommentsShouldNotBeEmptyBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
 {
     private const string DiagnosticId = "S4663";

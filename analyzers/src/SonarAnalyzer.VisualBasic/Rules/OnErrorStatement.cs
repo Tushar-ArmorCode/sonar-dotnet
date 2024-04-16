@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class OnErrorStatement : SonarDiagnosticAnalyzer
+    public sealed class OnErrorStatement : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2359";
         private const string MessageFormat = "Remove this use of 'OnError'.";

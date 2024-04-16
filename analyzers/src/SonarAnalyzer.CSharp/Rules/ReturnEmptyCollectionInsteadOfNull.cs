@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class ReturnEmptyCollectionInsteadOfNull : SonarDiagnosticAnalyzer
+public sealed class ReturnEmptyCollectionInsteadOfNull : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S1168";
     private const string MessageFormat = "Return an empty collection instead of null.";

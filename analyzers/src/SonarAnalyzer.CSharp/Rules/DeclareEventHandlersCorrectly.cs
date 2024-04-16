@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DeclareEventHandlersCorrectly : SonarDiagnosticAnalyzer
+    public sealed class DeclareEventHandlersCorrectly : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3906";
         private const string MessageFormat = "Change the signature of that event handler to match the specified signature.";

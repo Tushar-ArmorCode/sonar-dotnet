@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantArgument : SonarDiagnosticAnalyzer
+    public sealed class RedundantArgument : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3254";
         private const string MessageFormat = "Remove this default value assigned to parameter '{0}'.";

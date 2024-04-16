@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class UnaryPrefixOperatorRepeatedBase<TSyntaxKindEnum, TSyntaxNode> : SonarDiagnosticAnalyzer
+    public abstract class UnaryPrefixOperatorRepeatedBase<TSyntaxKindEnum, TSyntaxNode> : InternalSonarDiagnosticAnalyzer
         where TSyntaxNode : SyntaxNode
         where TSyntaxKindEnum : struct
     {

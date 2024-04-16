@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class UseLambdaParameterInConcurrentDictionaryBase<TSyntaxKind, TInvocationExpression, TArgumentSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class UseLambdaParameterInConcurrentDictionaryBase<TSyntaxKind, TInvocationExpression, TArgumentSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
     where TInvocationExpression : SyntaxNode
     where TArgumentSyntax : SyntaxNode

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class RedundantExitSelect : SonarDiagnosticAnalyzer
+    public sealed class RedundantExitSelect : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2951";
         private const string MessageFormat = "Remove this redundant use of 'Exit Select'.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class IssueSuppression : SonarDiagnosticAnalyzer
+    public sealed class IssueSuppression : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1309";
         private const string MessageFormat = "Do not suppress issues.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class AvoidLambdaExpressionInLoopsInBlazor : SonarDiagnosticAnalyzer
+public sealed class AvoidLambdaExpressionInLoopsInBlazor : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S6802";
     private const string MessageFormat = "Avoid using lambda expressions in loops in Blazor markup.";

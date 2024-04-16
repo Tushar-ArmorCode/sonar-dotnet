@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class RequireAttributeUsageAttribute : SonarDiagnosticAnalyzer
+public sealed class RequireAttributeUsageAttribute : InternalSonarDiagnosticAnalyzer
 {
     internal const string DiagnosticId = "S3993";
     private const string MessageFormat = "Specify AttributeUsage on '{0}'{1}.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ClassShouldNotBeAbstract : SonarDiagnosticAnalyzer
+    public sealed class ClassShouldNotBeAbstract : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1694";
         private const string MessageFormat = "Convert this 'abstract' {0} to {1}.";

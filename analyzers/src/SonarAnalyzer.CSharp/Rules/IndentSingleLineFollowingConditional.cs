@@ -23,7 +23,7 @@ namespace SonarAnalyzer.Rules.CSharp
     // Note: this rule only covers the indentation of the first line after a conditional.
     // Rule 2681 covers the misleading indentation of other lines of multiline blocks (https://jira.sonarsource.com/browse/RSPEC-2681)
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class IndentSingleLineFollowingConditional : SonarDiagnosticAnalyzer
+    public sealed class IndentSingleLineFollowingConditional : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3973";
         private const string MessageFormat = "Use curly braces or indentation to denote the code conditionally executed by this '{0}'";

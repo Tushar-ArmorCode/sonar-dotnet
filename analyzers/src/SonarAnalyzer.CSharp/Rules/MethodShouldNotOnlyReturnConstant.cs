@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MethodShouldNotOnlyReturnConstant : SonarDiagnosticAnalyzer
+    public sealed class MethodShouldNotOnlyReturnConstant : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3400";
         private const string MessageFormat = "Remove this method and declare a constant for this value.";

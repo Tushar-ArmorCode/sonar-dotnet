@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class DoNotCheckZeroSizeCollectionBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class DoNotCheckZeroSizeCollectionBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
     {
         protected const string DiagnosticId = "S3981";

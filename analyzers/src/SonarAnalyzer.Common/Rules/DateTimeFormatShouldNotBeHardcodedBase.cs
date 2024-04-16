@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class DateTimeFormatShouldNotBeHardcodedBase<TSyntaxKind, TInvocation> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class DateTimeFormatShouldNotBeHardcodedBase<TSyntaxKind, TInvocation> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
     where TInvocation : SyntaxNode
 {

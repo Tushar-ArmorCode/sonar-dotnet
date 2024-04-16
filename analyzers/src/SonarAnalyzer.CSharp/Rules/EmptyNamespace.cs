@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class EmptyNamespace : SonarDiagnosticAnalyzer
+    public sealed class EmptyNamespace : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3261";
         private const string MessageFormat = "Remove this empty namespace.";

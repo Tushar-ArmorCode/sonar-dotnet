@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class PropertyGetterWithThrowBase : SonarDiagnosticAnalyzer
+    public abstract class PropertyGetterWithThrowBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S2372";
 

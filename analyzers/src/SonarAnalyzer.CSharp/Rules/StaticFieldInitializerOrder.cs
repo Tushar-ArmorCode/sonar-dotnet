@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StaticFieldInitializerOrder : SonarDiagnosticAnalyzer
+    public sealed class StaticFieldInitializerOrder : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3263";
         private const string MessageFormat = "Move this field's initializer into a static constructor.";

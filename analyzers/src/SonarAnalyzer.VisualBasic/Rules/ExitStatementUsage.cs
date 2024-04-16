@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class ExitStatementUsage : SonarDiagnosticAnalyzer
+    public sealed class ExitStatementUsage : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3385";
         private const string MessageFormat = "Remove this 'Exit' statement.";

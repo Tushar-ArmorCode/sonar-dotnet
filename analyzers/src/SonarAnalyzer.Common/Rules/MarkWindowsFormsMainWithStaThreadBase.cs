@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class MarkWindowsFormsMainWithStaThreadBase<TSyntaxKind, TMethodSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class MarkWindowsFormsMainWithStaThreadBase<TSyntaxKind, TMethodSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TMethodSyntax : SyntaxNode
     {

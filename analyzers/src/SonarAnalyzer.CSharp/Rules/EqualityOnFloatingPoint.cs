@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class EqualityOnFloatingPoint : SonarDiagnosticAnalyzer
+public sealed class EqualityOnFloatingPoint : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S1244";
     private const string MessageFormat = "Do not check floating point {0} with exact values, use {1} instead.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StaticFieldVisible : SonarDiagnosticAnalyzer
+    public sealed class StaticFieldVisible : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2223";
         private const string MessageFormat = "Change the visibility of '{0}' or make it 'const' or 'readonly'.";

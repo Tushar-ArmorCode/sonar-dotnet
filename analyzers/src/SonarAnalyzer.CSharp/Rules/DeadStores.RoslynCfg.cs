@@ -23,7 +23,7 @@ using SonarAnalyzer.CFG.Roslyn;
 
 namespace SonarAnalyzer.Rules.CSharp
 {
-    public partial class DeadStores : SonarDiagnosticAnalyzer
+    public partial class DeadStores : InternalSonarDiagnosticAnalyzer
     {
         private class RoslynChecker : CheckerBase<ControlFlowGraph, BasicBlock>
         {

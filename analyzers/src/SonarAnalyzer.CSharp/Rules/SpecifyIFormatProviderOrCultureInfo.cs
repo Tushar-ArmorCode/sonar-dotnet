@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SpecifyIFormatProviderOrCultureInfo : SonarDiagnosticAnalyzer
+    public sealed class SpecifyIFormatProviderOrCultureInfo : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4056";
         private const string MessageFormat = "Use the overload that takes a 'CultureInfo' or 'IFormatProvider' parameter.";

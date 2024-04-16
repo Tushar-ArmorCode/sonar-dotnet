@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class RedundantNullCheckBase<TBinaryExpression> : SonarDiagnosticAnalyzer
+    public abstract class RedundantNullCheckBase<TBinaryExpression> : InternalSonarDiagnosticAnalyzer
         where TBinaryExpression : SyntaxNode
     {
         internal const string DiagnosticId = "S4201";

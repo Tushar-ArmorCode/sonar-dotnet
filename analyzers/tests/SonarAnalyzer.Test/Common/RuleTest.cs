@@ -69,7 +69,7 @@ namespace SonarAnalyzer.Test.Common
         {
             foreach (var analyzer in RuleFinder.AllAnalyzerTypes)
             {
-                analyzer.Should().BeAssignableTo<SonarDiagnosticAnalyzer>($"{analyzer.Name} is not a subclass of SonarDiagnosticAnalyzer");
+                analyzer.Should().BeAssignableTo<InternalSonarDiagnosticAnalyzer>($"{analyzer.Name} is not a subclass of SonarDiagnosticAnalyzer");
             }
         }
 
@@ -78,7 +78,7 @@ namespace SonarAnalyzer.Test.Common
         {
             foreach (var analyzer in RuleFinder.AllTypesWithDiagnosticAnalyzerAttribute)
             {
-                analyzer.Should().BeAssignableTo<SonarDiagnosticAnalyzer>($"{analyzer.Name} is not a subclass of SonarDiagnosticAnalyzer");
+                analyzer.Should().BeAssignableTo<InternalSonarDiagnosticAnalyzer>($"{analyzer.Name} is not a subclass of SonarDiagnosticAnalyzer");
             }
         }
 
@@ -125,7 +125,7 @@ namespace SonarAnalyzer.Test.Common
         public void Verify_ConcurrentExecutionIsExplicitlyEnabled(string value)
         {
             using var scope = new EnvironmentVariableScope(false);
-            scope.SetVariable(SonarDiagnosticAnalyzer.EnableConcurrentExecutionVariable, value);
+            scope.SetVariable(InternalSonarDiagnosticAnalyzer.EnableConcurrentExecutionVariable, value);
             var reader = new ConcurrentExecutionReader();
             reader.IsConcurrentExecutionEnabled.Should().BeNull();
             VerifyNoExceptionThrown("TestCases\\AsyncVoidMethod.cs", new[] { reader });
@@ -138,7 +138,7 @@ namespace SonarAnalyzer.Test.Common
         public void Verify_ConcurrentExecutionIsExplicitlyDisabled(string value)
         {
             using var scope = new EnvironmentVariableScope(false);
-            scope.SetVariable(SonarDiagnosticAnalyzer.EnableConcurrentExecutionVariable, value);
+            scope.SetVariable(InternalSonarDiagnosticAnalyzer.EnableConcurrentExecutionVariable, value);
             var reader = new ConcurrentExecutionReader();
             reader.IsConcurrentExecutionEnabled.Should().BeNull();
             VerifyNoExceptionThrown("TestCases\\AsyncVoidMethod.cs", new[] { reader });
@@ -408,7 +408,7 @@ namespace SonarAnalyzer.Test.Common
         }
 
         [DiagnosticAnalyzer(LanguageNames.CSharp)]
-        private class ConcurrentExecutionReader : SonarDiagnosticAnalyzer
+        private class ConcurrentExecutionReader : InternalSonarDiagnosticAnalyzer
         {
             private static readonly DiagnosticDescriptor Rule = DiagnosticDescriptorFactory.CreateUtility("S9999", "Rule test");
 

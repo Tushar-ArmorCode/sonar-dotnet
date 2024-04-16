@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ConstructorArgumentValueShouldExistBase : SonarDiagnosticAnalyzer
+    public abstract class ConstructorArgumentValueShouldExistBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S4260";
         protected const string MessageFormat =

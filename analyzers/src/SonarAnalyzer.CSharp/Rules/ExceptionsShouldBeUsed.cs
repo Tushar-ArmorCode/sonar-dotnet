@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ExceptionsShouldBeUsed : SonarDiagnosticAnalyzer
+    public sealed class ExceptionsShouldBeUsed : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3984";
         private const string MessageFormat = "Throw this exception or remove this useless statement.";

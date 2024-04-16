@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotHideBaseClassMethods : SonarDiagnosticAnalyzer
+    public sealed class DoNotHideBaseClassMethods : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4019";
         private const string MessageFormat = "Remove or rename that method because it hides '{0}'.";

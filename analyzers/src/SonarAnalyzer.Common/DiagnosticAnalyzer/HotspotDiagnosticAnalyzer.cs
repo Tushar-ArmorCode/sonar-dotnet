@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Helpers
 {
-    public abstract class HotspotDiagnosticAnalyzer : SonarDiagnosticAnalyzer
+    public abstract class HotspotDiagnosticAnalyzer : InternalSonarDiagnosticAnalyzer
     {
         protected IAnalyzerConfiguration Configuration { get; }
 

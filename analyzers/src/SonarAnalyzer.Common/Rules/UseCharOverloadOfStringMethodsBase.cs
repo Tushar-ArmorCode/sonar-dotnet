@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class UseCharOverloadOfStringMethodsBase<TSyntaxKind, TInvocation> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class UseCharOverloadOfStringMethodsBase<TSyntaxKind, TInvocation> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
     where TInvocation : SyntaxNode
 {

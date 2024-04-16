@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ExceptionRethrow : SonarDiagnosticAnalyzer
+    public sealed class ExceptionRethrow : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3445";
         private const string MessageFormat = "Consider using 'throw;' to preserve the stack trace.";

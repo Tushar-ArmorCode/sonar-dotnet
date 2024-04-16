@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ForeachLoopExplicitConversion : SonarDiagnosticAnalyzer
+    public sealed class ForeachLoopExplicitConversion : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3217";
         private const string MessageFormat = "Either change the type of '{0}' to '{1}' or iterate on a generic collection of type '{2}'.";

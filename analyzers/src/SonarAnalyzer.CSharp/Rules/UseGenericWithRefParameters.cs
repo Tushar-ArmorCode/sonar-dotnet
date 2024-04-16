@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseGenericWithRefParameters : SonarDiagnosticAnalyzer
+    public sealed class UseGenericWithRefParameters : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4047";
         private const string MessageFormat = "Make this method generic and replace the 'object' parameter with a type parameter.";

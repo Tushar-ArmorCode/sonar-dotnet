@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class UseReturnStatement : SonarDiagnosticAnalyzer
+    public sealed class UseReturnStatement : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S5944";
         private const string MessageFormat = "{0}";

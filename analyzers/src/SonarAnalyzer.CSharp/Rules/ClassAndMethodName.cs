@@ -23,7 +23,7 @@ using System.Text;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ClassAndMethodName : SonarDiagnosticAnalyzer
+    public sealed class ClassAndMethodName : InternalSonarDiagnosticAnalyzer
     {
         private const string MethodNameDiagnosticId = "S100";
         private const string TypeNameDiagnosticId = "S101";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CatchEmpty : SonarDiagnosticAnalyzer
+    public sealed class CatchEmpty : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2486";
         private const string MessageFormat = "Handle the exception or explain in a comment why it can be ignored.";

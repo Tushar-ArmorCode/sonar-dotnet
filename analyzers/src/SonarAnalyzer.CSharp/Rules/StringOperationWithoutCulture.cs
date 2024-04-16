@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StringOperationWithoutCulture : SonarDiagnosticAnalyzer
+    public sealed class StringOperationWithoutCulture : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1449";
         private const string MessageFormat = "{0}";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class ClassShouldNotBeEmptyBase<TSyntaxKind, TDeclarationSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class ClassShouldNotBeEmptyBase<TSyntaxKind, TDeclarationSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
     where TDeclarationSyntax : SyntaxNode
 {

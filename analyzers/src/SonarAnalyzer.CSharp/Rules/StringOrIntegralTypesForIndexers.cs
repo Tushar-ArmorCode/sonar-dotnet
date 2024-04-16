@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StringOrIntegralTypesForIndexers : SonarDiagnosticAnalyzer
+    public sealed class StringOrIntegralTypesForIndexers : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3876";
         private const string MessageFormat = "Use string, integral, index or range type here, or refactor this indexer into a method.";

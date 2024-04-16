@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TypeNamesShouldNotMatchNamespaces : SonarDiagnosticAnalyzer
+    public sealed class TypeNamesShouldNotMatchNamespaces : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4041";
         private const string MessageFormat = "Change the name of type '{0}' to be different from an existing framework namespace.";

@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AzureFunctionsCatchExceptions : SonarDiagnosticAnalyzer
+    public sealed class AzureFunctionsCatchExceptions : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S6421";
         private const string MessageFormat = "Wrap Azure Function body in try/catch block.";

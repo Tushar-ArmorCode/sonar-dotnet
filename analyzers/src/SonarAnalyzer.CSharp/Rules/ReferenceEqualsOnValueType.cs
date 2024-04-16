@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ReferenceEqualsOnValueType : SonarDiagnosticAnalyzer
+    public sealed class ReferenceEqualsOnValueType : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2995";
         private const string MessageFormat = "Use a different kind of comparison for these value types.";

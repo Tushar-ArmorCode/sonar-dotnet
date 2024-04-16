@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ThreadStaticWithInitializer : SonarDiagnosticAnalyzer
+    public sealed class ThreadStaticWithInitializer : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2996";
         private const string MessageFormat = "Remove this initialization of '{0}' or make it lazy.";

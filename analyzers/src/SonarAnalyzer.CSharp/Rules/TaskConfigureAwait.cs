@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TaskConfigureAwait : SonarDiagnosticAnalyzer
+    public sealed class TaskConfigureAwait : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3216";
         private const string MessageFormat = "Add '.ConfigureAwait(false)' to this call to allow execution to continue in any thread.";

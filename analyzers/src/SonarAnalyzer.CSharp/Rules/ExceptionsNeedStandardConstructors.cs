@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ExceptionsNeedStandardConstructors : SonarDiagnosticAnalyzer
+    public sealed class ExceptionsNeedStandardConstructors : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4027";
         private const string MessageFormat = "Implement the missing constructors for this exception.";

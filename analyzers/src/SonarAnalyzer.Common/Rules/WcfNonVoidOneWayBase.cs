@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class WcfNonVoidOneWayBase<TMethodSyntax, TLanguageKind> : SonarDiagnosticAnalyzer
+    public abstract class WcfNonVoidOneWayBase<TMethodSyntax, TLanguageKind> : InternalSonarDiagnosticAnalyzer
         where TMethodSyntax : SyntaxNode
         where TLanguageKind : struct
     {

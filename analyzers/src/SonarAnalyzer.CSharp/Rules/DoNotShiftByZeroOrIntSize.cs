@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotShiftByZeroOrIntSize : SonarDiagnosticAnalyzer
+    public sealed class DoNotShiftByZeroOrIntSize : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2183";
         private const string MessageFormatUseLargerTypeOrPromote = "Either promote shift target to a larger integer type or shift by {0} instead.";

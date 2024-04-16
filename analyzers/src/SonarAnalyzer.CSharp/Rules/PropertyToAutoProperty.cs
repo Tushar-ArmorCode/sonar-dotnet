@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PropertyToAutoProperty : SonarDiagnosticAnalyzer
+    public sealed class PropertyToAutoProperty : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2292";
         private const string MessageFormat = "Make this an auto-implemented property and remove its backing field.";

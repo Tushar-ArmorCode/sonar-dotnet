@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules
 {
     public abstract class RedundantParenthesesBase<TParenthesizedExpression, TSyntaxKind>
-        : SonarDiagnosticAnalyzer
+        : InternalSonarDiagnosticAnalyzer
         where TParenthesizedExpression : SyntaxNode
         where TSyntaxKind : struct
     {

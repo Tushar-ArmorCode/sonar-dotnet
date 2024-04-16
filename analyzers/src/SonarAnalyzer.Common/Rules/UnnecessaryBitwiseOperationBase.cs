@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class UnnecessaryBitwiseOperationBase : SonarDiagnosticAnalyzer
+    public abstract class UnnecessaryBitwiseOperationBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2437";
         internal const string IsReportingOnLeftKey = "IsReportingOnLeft";

@@ -31,7 +31,7 @@ namespace SonarAnalyzer.Rules
             new(IsAnalyzerEnabled: false, IgnoreHeaderComments: false, AnalyzeGeneratedCode: false, AnalyzeTestProjects: true, OutPath: null, IsTestProject: false);
     }
 
-    public abstract class UtilityAnalyzerBase : SonarDiagnosticAnalyzer
+    public abstract class UtilityAnalyzerBase : InternalSonarDiagnosticAnalyzer
     {
         protected static readonly ISet<string> FileExtensionWhitelist = new HashSet<string> { ".cs", ".csx", ".vb" };
         private readonly DiagnosticDescriptor rule;

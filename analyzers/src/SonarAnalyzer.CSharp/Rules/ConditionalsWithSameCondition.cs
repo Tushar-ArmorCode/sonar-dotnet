@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ConditionalsWithSameCondition : SonarDiagnosticAnalyzer
+    public sealed class ConditionalsWithSameCondition : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2760";
         private const string MessageFormat = "This condition was just checked on line {0}.";

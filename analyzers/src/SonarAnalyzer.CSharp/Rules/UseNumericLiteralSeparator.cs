@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseNumericLiteralSeparator : SonarDiagnosticAnalyzer
+    public sealed class UseNumericLiteralSeparator : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2148";
         private const string MessageFormat = "Add underscores to this numeric value for readability.";

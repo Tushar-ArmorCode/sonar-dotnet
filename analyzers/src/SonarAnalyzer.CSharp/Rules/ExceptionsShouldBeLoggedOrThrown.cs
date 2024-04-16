@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class ExceptionsShouldBeLoggedOrThrown : SonarDiagnosticAnalyzer
+public sealed class ExceptionsShouldBeLoggedOrThrown : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S2139";
     private const string MessageFormat = "Either log this exception and handle it, or rethrow it with some contextual information.";

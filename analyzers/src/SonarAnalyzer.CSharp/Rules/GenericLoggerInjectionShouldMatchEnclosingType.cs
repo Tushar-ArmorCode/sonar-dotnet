@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class GenericLoggerInjectionShouldMatchEnclosingType : SonarDiagnosticAnalyzer
+public sealed class GenericLoggerInjectionShouldMatchEnclosingType : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S6672";
     private const string MessageFormat = "Update this logger to use its enclosing type.";

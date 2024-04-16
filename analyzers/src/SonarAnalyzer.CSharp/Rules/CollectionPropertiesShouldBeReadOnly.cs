@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CollectionPropertiesShouldBeReadOnly : SonarDiagnosticAnalyzer
+    public sealed class CollectionPropertiesShouldBeReadOnly : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4004";
         private const string MessageFormat = "Make the '{0}' property read-only by removing the property setter or making it private.";

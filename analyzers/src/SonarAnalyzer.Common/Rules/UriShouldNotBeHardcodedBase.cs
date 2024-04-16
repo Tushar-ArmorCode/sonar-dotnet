@@ -22,7 +22,7 @@ using System.Text.RegularExpressions;
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class UriShouldNotBeHardcodedBase<TSyntaxKind, TLiteralExpressionSyntax, TArgumentSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class UriShouldNotBeHardcodedBase<TSyntaxKind, TLiteralExpressionSyntax, TArgumentSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TLiteralExpressionSyntax : SyntaxNode
         where TArgumentSyntax : SyntaxNode

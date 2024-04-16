@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GuardConditionOnEqualsOverride : SonarDiagnosticAnalyzer
+    public sealed class GuardConditionOnEqualsOverride : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3397";
         private const string MessageFormat = "Change this guard condition to call 'object.ReferenceEquals'.";

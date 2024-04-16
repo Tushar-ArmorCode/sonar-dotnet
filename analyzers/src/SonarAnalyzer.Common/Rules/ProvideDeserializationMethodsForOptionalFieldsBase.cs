@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ProvideDeserializationMethodsForOptionalFieldsBase : SonarDiagnosticAnalyzer
+    public abstract class ProvideDeserializationMethodsForOptionalFieldsBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3926";
         private const string MessageFormat = "{0}";

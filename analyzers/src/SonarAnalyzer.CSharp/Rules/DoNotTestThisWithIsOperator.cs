@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotTestThisWithIsOperator : SonarDiagnosticAnalyzer
+    public sealed class DoNotTestThisWithIsOperator : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3060";
         private const string MessageFormat = "Offload the code that's conditional on this type test to the appropriate subclass and remove the condition.";

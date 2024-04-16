@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class FlagsEnumWithoutInitializerBase<TSyntaxKind, TEnumMemberDeclarationSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class FlagsEnumWithoutInitializerBase<TSyntaxKind, TEnumMemberDeclarationSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TEnumMemberDeclarationSyntax : SyntaxNode
     {

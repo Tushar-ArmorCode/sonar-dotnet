@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CollectionQuerySimplification : SonarDiagnosticAnalyzer
+    public sealed class CollectionQuerySimplification : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2971";
         private const string MessageFormat = "{0}";

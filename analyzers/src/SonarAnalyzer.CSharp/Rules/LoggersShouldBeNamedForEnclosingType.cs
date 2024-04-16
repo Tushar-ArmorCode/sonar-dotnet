@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class LoggersShouldBeNamedForEnclosingType : SonarDiagnosticAnalyzer
+public sealed class LoggersShouldBeNamedForEnclosingType : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S3416";
     private const string MessageFormat = "Update this logger to use its enclosing type.";

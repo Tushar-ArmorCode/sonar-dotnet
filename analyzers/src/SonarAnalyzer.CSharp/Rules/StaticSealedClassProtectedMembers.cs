@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StaticSealedClassProtectedMembers : SonarDiagnosticAnalyzer
+    public sealed class StaticSealedClassProtectedMembers : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2156";
         private const string MessageFormat = "Remove this 'protected' modifier.";

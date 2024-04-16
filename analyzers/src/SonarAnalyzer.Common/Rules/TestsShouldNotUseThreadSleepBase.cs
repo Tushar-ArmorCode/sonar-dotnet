@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class TestsShouldNotUseThreadSleepBase<TMethodSyntax, TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class TestsShouldNotUseThreadSleepBase<TMethodSyntax, TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TMethodSyntax : SyntaxNode
     where TSyntaxKind : struct
 {

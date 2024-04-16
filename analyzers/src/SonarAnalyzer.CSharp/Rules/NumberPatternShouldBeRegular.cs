@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class NumberPatternShouldBeRegular : SonarDiagnosticAnalyzer
+    public sealed class NumberPatternShouldBeRegular : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3937";
         private const string MessageFormat = "Review this number; its irregular pattern indicates an error.";

@@ -23,7 +23,7 @@ using SonarAnalyzer.CFG.Sonar;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantJumpStatement : SonarDiagnosticAnalyzer
+    public sealed class RedundantJumpStatement : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3626";
         private const string MessageFormat = "Remove this redundant jump.";

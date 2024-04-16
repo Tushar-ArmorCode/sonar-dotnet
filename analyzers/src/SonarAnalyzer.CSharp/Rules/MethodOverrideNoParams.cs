@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MethodOverrideNoParams : SonarDiagnosticAnalyzer
+    public sealed class MethodOverrideNoParams : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3262";
         private const string MessageFormat = "'params' should not be removed from an override.";

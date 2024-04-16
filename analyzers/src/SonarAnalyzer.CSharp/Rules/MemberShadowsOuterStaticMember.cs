@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MemberShadowsOuterStaticMember : SonarDiagnosticAnalyzer
+    public sealed class MemberShadowsOuterStaticMember : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3218";
         private const string MessageFormat = "Rename this {0} to not shadow the outer class' member with the same name.";

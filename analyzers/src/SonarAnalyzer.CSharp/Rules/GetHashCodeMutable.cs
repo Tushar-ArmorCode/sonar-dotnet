@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GetHashCodeMutable : SonarDiagnosticAnalyzer
+    public sealed class GetHashCodeMutable : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2328";
         private const string IssueMessage = "Refactor 'GetHashCode' to not reference mutable fields.";

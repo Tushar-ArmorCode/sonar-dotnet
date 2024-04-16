@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DontMixIncrementOrDecrementWithOtherOperators : SonarDiagnosticAnalyzer
+    public sealed class DontMixIncrementOrDecrementWithOtherOperators : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S881";
         private const string MessageFormat = "Extract this {0} operation into a dedicated statement.";

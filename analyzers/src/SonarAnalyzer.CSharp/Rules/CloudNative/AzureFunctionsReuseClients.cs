@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AzureFunctionsReuseClients : SonarDiagnosticAnalyzer
+    public sealed class AzureFunctionsReuseClients : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S6420";
         private const string MessageFormat = "Reuse client instances rather than creating new ones with each function invocation.";

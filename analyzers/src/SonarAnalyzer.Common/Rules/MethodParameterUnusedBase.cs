@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class MethodParameterUnusedBase : SonarDiagnosticAnalyzer
+    public abstract class MethodParameterUnusedBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1172";
     }

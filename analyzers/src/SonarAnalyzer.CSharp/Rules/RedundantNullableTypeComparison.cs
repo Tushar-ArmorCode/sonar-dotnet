@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantNullableTypeComparison : SonarDiagnosticAnalyzer
+    public sealed class RedundantNullableTypeComparison : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3610";
         private const string MessageFormat = "Remove this redundant type comparison.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SwitchCaseFallsThroughToDefault : SonarDiagnosticAnalyzer
+    public sealed class SwitchCaseFallsThroughToDefault : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3458";
         private const string MessageFormat = "Remove this empty 'case' clause.";

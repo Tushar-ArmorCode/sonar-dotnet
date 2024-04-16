@@ -25,7 +25,7 @@ using SonarAnalyzer.Rules.XXE;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class XmlExternalEntityShouldNotBeParsed : SonarDiagnosticAnalyzer
+    public sealed class XmlExternalEntityShouldNotBeParsed : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2755";
         private const string MessageFormat = "Disable access to external entities in XML parsing.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class BlazorQueryParameterRoutableComponent : SonarDiagnosticAnalyzer
+public sealed class BlazorQueryParameterRoutableComponent : InternalSonarDiagnosticAnalyzer
 {
     private const string NoRouteQueryDiagnosticId = "S6803";
     private const string NoRouteQueryMessageFormat = "Component parameters can only receive query parameter values in routable components.";

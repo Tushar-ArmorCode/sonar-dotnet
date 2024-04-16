@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AnonymousDelegateEventUnsubscribe : SonarDiagnosticAnalyzer
+    public sealed class AnonymousDelegateEventUnsubscribe : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3244";
         private const string MessageFormat = "Unsubscribe with the same delegate that was used for the subscription.";

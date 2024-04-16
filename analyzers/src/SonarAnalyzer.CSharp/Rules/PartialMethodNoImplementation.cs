@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PartialMethodNoImplementation : SonarDiagnosticAnalyzer
+    public sealed class PartialMethodNoImplementation : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3251";
         private const string MessageFormat = "Supply an implementation for {0} partial method{1}.";

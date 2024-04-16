@@ -23,7 +23,7 @@ using System.Collections;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PropertiesShouldBePreferred : SonarDiagnosticAnalyzer
+    public sealed class PropertiesShouldBePreferred : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4049";
         private const string MessageFormat = "Consider making method '{0}' a property.";

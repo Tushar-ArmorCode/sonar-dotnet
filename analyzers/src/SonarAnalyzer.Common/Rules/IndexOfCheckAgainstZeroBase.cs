@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class IndexOfCheckAgainstZeroBase<TSyntaxKind, TBinaryExpressionSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class IndexOfCheckAgainstZeroBase<TSyntaxKind, TBinaryExpressionSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TBinaryExpressionSyntax : SyntaxNode
     {

@@ -22,7 +22,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class TabCharacterBase : SonarDiagnosticAnalyzer
+    public abstract class TabCharacterBase : InternalSonarDiagnosticAnalyzer
     {
         protected sealed override void Initialize(SonarAnalysisContext context)
         {

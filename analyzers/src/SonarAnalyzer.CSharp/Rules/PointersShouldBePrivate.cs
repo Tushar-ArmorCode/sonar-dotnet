@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PointersShouldBePrivate : SonarDiagnosticAnalyzer
+    public sealed class PointersShouldBePrivate : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4000";
         private const string MessageFormat = "Make '{0}' 'private' or 'protected readonly'.";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class PartCreationPolicyShouldBeUsedWithExportAttributeBase<TAttributeSyntax, TDeclarationSyntax> : SonarDiagnosticAnalyzer
+    public abstract class PartCreationPolicyShouldBeUsedWithExportAttributeBase<TAttributeSyntax, TDeclarationSyntax> : InternalSonarDiagnosticAnalyzer
         where TAttributeSyntax : SyntaxNode
         where TDeclarationSyntax : SyntaxNode
     {

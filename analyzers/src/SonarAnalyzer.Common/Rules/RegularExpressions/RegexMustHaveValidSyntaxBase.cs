@@ -22,7 +22,7 @@ using SonarAnalyzer.RegularExpressions;
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class RegexMustHaveValidSyntaxBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class RegexMustHaveValidSyntaxBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
 {
     private const string DiagnosticId = "S5856";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class CheckArgumentException : SonarDiagnosticAnalyzer
+    public class CheckArgumentException : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3928";
         private const string MessageFormat = "{0}";

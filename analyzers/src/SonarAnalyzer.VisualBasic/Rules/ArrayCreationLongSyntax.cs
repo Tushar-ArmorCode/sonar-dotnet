@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class ArrayCreationLongSyntax : SonarDiagnosticAnalyzer
+    public sealed class ArrayCreationLongSyntax : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2355";
         private const string MessageFormat = "Use an array literal here instead.";

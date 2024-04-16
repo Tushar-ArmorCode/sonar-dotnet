@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ValuesUselesslyIncremented : SonarDiagnosticAnalyzer
+    public sealed class ValuesUselesslyIncremented : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2123";
         private const string MessageFormat = "Remove this {0} or correct the code not to waste it.";

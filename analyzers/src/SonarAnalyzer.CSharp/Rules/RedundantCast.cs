@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class RedundantCast : SonarDiagnosticAnalyzer
+public sealed class RedundantCast : InternalSonarDiagnosticAnalyzer
 {
     internal const string DiagnosticId = "S1905";
     private const string MessageFormat = "Remove this unnecessary cast to '{0}'.";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ClassNotInstantiatableBase<TBaseTypeSyntax, TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class ClassNotInstantiatableBase<TBaseTypeSyntax, TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TBaseTypeSyntax : SyntaxNode
         where TSyntaxKind : struct
     {

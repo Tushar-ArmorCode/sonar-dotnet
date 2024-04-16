@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MethodsShouldUseBaseTypes : SonarDiagnosticAnalyzer
+    public sealed class MethodsShouldUseBaseTypes : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3242";
         private const string MessageFormat = "Consider using more general type '{0}' instead of '{1}'.";

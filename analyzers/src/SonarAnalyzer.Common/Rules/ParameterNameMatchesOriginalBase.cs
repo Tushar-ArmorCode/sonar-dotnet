@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ParameterNameMatchesOriginalBase<TSyntaxKind, TMethodDeclarationSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class ParameterNameMatchesOriginalBase<TSyntaxKind, TMethodDeclarationSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TMethodDeclarationSyntax : SyntaxNode
     {

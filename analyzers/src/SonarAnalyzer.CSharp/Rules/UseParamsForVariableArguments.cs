@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseParamsForVariableArguments : SonarDiagnosticAnalyzer
+    public sealed class UseParamsForVariableArguments : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4061";
         private const string MessageFormat = "Use the 'params' keyword instead of '__arglist'.";

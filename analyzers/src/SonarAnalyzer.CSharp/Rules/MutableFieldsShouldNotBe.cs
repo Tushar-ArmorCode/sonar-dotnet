@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class MutableFieldsShouldNotBe : SonarDiagnosticAnalyzer
+    public abstract class MutableFieldsShouldNotBe : InternalSonarDiagnosticAnalyzer
     {
         private static readonly ImmutableArray<KnownType> MutableBaseTypes =
             ImmutableArray.Create(

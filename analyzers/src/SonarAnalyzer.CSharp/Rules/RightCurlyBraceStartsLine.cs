@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RightCurlyBraceStartsLine : SonarDiagnosticAnalyzer
+    public sealed class RightCurlyBraceStartsLine : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1109";
         private const string MessageFormat = "Move this closing curly brace to the next line.";

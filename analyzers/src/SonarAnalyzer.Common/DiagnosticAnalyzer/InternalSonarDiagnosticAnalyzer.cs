@@ -22,7 +22,7 @@ using RoslynAnalysisContext = Microsoft.CodeAnalysis.Diagnostics.AnalysisContext
 
 namespace SonarAnalyzer.Helpers
 {
-    public abstract class SonarDiagnosticAnalyzer : DiagnosticAnalyzer
+    public abstract class InternalSonarDiagnosticAnalyzer : DiagnosticAnalyzer
     {
         public static readonly string EnableConcurrentExecutionVariable = "SONAR_DOTNET_ENABLE_CONCURRENT_EXECUTION";
 
@@ -53,7 +53,7 @@ namespace SonarAnalyzer.Helpers
         }
     }
 
-    public abstract class SonarDiagnosticAnalyzer<TSyntaxKind> : SonarDiagnosticAnalyzer
+    public abstract class InternalSonarDiagnosticAnalyzer<TSyntaxKind> : InternalSonarDiagnosticAnalyzer
         where TSyntaxKind : struct
     {
         protected abstract string MessageFormat { get; }
@@ -61,7 +61,7 @@ namespace SonarAnalyzer.Helpers
         protected DiagnosticDescriptor Rule { get; }
         public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
-        protected SonarDiagnosticAnalyzer(string diagnosticId) =>
+        protected InternalSonarDiagnosticAnalyzer(string diagnosticId) =>
            Rule = Language.CreateDescriptor(diagnosticId, MessageFormat);
     }
 }

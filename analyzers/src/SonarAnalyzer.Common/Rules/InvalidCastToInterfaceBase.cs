@@ -22,7 +22,7 @@ using TypeMap = System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.INa
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class InvalidCastToInterfaceBase<TSyntaxKind> : SonarDiagnosticAnalyzer
+public abstract class InvalidCastToInterfaceBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer
     where TSyntaxKind : struct
 {
     protected const string DiagnosticId = "S1944";

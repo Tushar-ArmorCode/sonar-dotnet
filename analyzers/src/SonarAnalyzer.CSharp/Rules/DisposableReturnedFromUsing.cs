@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DisposableReturnedFromUsing : SonarDiagnosticAnalyzer
+    public sealed class DisposableReturnedFromUsing : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2997";
         private const string MessageFormat = "Remove the 'using' statement; it will cause automatic disposal of {0}.";

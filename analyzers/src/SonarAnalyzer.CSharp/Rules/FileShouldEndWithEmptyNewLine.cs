@@ -23,7 +23,7 @@ using System.IO;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class FileShouldEndWithEmptyNewLine : SonarDiagnosticAnalyzer
+    public sealed class FileShouldEndWithEmptyNewLine : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S113";
         private const string MessageFormat = "Add a new line at the end of the file '{0}'.";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class DoNotThrowFromDestructorsBase : SonarDiagnosticAnalyzer
+    public abstract class DoNotThrowFromDestructorsBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S1048";
     }

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class NegatedIsExpression : SonarDiagnosticAnalyzer
+    public sealed class NegatedIsExpression : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2358";
         private const string MessageFormat = "Replace this use of 'Not...Is...' with 'IsNot'.";

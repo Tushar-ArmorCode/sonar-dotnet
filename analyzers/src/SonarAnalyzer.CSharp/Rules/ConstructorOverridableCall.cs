@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ConstructorOverridableCall : SonarDiagnosticAnalyzer
+    public sealed class ConstructorOverridableCall : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1699";
         private const string MessageFormat = "Remove this call from a constructor to the overridable '{0}' method.";

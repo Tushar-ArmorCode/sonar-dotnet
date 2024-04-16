@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TryStatementsWithIdenticalCatchShouldBeMerged : SonarDiagnosticAnalyzer
+    public sealed class TryStatementsWithIdenticalCatchShouldBeMerged : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2327";
         private const string MessageFormat = "Combine this 'try' with the one starting on line {0}.";

@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantModifier : SonarDiagnosticAnalyzer
+    public sealed class RedundantModifier : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2333";
         private const string MessageFormat = "'{0}' is {1} in this context.";

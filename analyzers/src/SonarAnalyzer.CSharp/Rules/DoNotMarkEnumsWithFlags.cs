@@ -23,7 +23,7 @@ using System.Numerics;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotMarkEnumsWithFlags : SonarDiagnosticAnalyzer
+    public sealed class DoNotMarkEnumsWithFlags : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4070";
         private const string MessageFormat = "Remove the 'FlagsAttribute' from this enum.";

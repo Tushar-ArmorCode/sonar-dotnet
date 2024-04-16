@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class IfChainWithoutElseBase<TSyntaxKind, TIfSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class IfChainWithoutElseBase<TSyntaxKind, TIfSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TIfSyntax : SyntaxNode
     {

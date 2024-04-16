@@ -26,7 +26,7 @@ using SonarAnalyzer.LiveVariableAnalysis.CSharp;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed partial class DeadStores : SonarDiagnosticAnalyzer
+    public sealed partial class DeadStores : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1854";
         private const string MessageFormat = "Remove this useless assignment to local variable '{0}'.";

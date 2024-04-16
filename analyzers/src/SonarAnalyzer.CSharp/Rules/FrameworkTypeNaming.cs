@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class FrameworkTypeNaming : SonarDiagnosticAnalyzer
+    public sealed class FrameworkTypeNaming : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3376";
         private const string MessageFormat = "Make this class name end with '{0}'.";

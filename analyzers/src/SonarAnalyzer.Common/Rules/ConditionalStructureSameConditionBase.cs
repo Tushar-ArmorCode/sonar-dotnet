@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ConditionalStructureSameConditionBase : SonarDiagnosticAnalyzer
+    public abstract class ConditionalStructureSameConditionBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S1862";
         protected const string MessageFormat = "This branch duplicates the one on line {0}.";

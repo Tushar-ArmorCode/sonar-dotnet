@@ -22,7 +22,7 @@ using System.Collections.Concurrent;
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class RouteTemplateShouldNotStartWithSlashBase<TSyntaxKind>() : SonarDiagnosticAnalyzer<TSyntaxKind>(DiagnosticId)
+public abstract class RouteTemplateShouldNotStartWithSlashBase<TSyntaxKind>() : InternalSonarDiagnosticAnalyzer<TSyntaxKind>(DiagnosticId)
     where TSyntaxKind : struct
 {
     private const string DiagnosticId = "S6931";

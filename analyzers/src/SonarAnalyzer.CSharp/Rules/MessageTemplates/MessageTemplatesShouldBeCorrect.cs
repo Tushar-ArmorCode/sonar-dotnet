@@ -24,7 +24,7 @@ using SonarAnalyzer.Rules.MessageTemplates;
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class MessageTemplatesShouldBeCorrect : SonarDiagnosticAnalyzer
+public sealed class MessageTemplatesShouldBeCorrect : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S6674";
     private const string MessageFormat = "Log message template {0}.";

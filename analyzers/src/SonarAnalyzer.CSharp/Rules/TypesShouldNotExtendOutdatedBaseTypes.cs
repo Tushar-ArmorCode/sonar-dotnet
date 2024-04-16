@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TypesShouldNotExtendOutdatedBaseTypes : SonarDiagnosticAnalyzer
+    public sealed class TypesShouldNotExtendOutdatedBaseTypes : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4052";
         private const string MessageFormat = "Refactor this type not to derive from an outdated type '{0}'.";

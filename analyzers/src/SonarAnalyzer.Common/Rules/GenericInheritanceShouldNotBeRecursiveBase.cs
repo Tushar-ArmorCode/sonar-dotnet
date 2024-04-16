@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class GenericInheritanceShouldNotBeRecursiveBase<TSyntaxKind, TDeclaration> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class GenericInheritanceShouldNotBeRecursiveBase<TSyntaxKind, TDeclaration> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TDeclaration : SyntaxNode
     {

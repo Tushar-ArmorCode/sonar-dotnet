@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class OrderByRepeated : SonarDiagnosticAnalyzer
+    public sealed class OrderByRepeated : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3169";
         private const string MessageFormat = "Use 'ThenBy' instead.";

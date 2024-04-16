@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class OperatorOverloadsShouldHaveNamedAlternatives : SonarDiagnosticAnalyzer
+    public sealed class OperatorOverloadsShouldHaveNamedAlternatives : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4069";
         private const string MessageFormat = "Implement alternative method '{0}' for the operator '{1}'.";

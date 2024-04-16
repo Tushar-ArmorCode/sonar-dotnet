@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class LiteralsShouldNotBePassedAsLocalizedParameters : SonarDiagnosticAnalyzer
+    public sealed class LiteralsShouldNotBePassedAsLocalizedParameters : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4055";
         private const string MessageFormat = "Replace this string literal with a string retrieved through an instance of the 'ResourceManager' class.";

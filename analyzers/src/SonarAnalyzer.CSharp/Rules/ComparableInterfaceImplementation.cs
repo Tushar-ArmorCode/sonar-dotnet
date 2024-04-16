@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ComparableInterfaceImplementation : SonarDiagnosticAnalyzer
+    public sealed class ComparableInterfaceImplementation : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1210";
         private const string MessageFormat = "When implementing {0}, you should also override {1}.";

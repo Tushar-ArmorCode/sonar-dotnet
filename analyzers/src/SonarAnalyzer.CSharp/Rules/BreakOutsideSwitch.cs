@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class BreakOutsideSwitch : SonarDiagnosticAnalyzer
+    public sealed class BreakOutsideSwitch : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1227";
         private const string MessageFormat = "Refactor the code in order to remove this break statement.";

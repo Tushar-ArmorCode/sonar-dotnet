@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class FieldsShouldBeEncapsulatedInProperties : SonarDiagnosticAnalyzer
+    public sealed class FieldsShouldBeEncapsulatedInProperties : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1104";
         private const string MessageFormat = "Make this field 'private' and encapsulate it in a 'public' property.";

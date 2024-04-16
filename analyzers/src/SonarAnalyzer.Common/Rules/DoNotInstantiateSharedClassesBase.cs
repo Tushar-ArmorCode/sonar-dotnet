@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class DoNotInstantiateSharedClassesBase : SonarDiagnosticAnalyzer
+    public abstract class DoNotInstantiateSharedClassesBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4277";
         protected const string MessageFormat = "Refactor this code so that it doesn't invoke the constructor of this class.";

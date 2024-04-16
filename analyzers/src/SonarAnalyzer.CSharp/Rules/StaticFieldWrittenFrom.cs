@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class StaticFieldWrittenFrom : SonarDiagnosticAnalyzer
+    public abstract class StaticFieldWrittenFrom : InternalSonarDiagnosticAnalyzer
     {
         protected abstract DiagnosticDescriptor Rule { get; }
         protected override bool EnableConcurrentExecution => false;

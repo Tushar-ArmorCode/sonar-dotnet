@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SuppressFinalizeUseless : SonarDiagnosticAnalyzer
+    public sealed class SuppressFinalizeUseless : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3234";
         private const string MessageFormat = "Remove this useless call to 'GC.SuppressFinalize'.";

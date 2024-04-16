@@ -23,7 +23,7 @@ using Microsoft.CodeAnalysis;
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class DebuggerDisplayUsesExistingMembersBase<TAttributeSyntax, TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class DebuggerDisplayUsesExistingMembersBase<TAttributeSyntax, TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TAttributeSyntax : SyntaxNode
     where TSyntaxKind : struct
 {

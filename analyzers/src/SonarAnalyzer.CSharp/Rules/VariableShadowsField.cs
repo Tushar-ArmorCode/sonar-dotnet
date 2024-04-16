@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class VariableShadowsField : SonarDiagnosticAnalyzer
+    public sealed class VariableShadowsField : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1117";
         private const string MessageFormat = "Rename '{0}' which hides the {1} with the same name.";

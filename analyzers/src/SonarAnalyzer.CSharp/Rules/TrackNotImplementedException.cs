@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TrackNotImplementedException : SonarDiagnosticAnalyzer
+    public sealed class TrackNotImplementedException : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3717";
         private const string MessageFormat = "Implement this method or throw 'NotSupportedException' instead.";

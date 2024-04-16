@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MethodOverrideChangedDefaultValue : SonarDiagnosticAnalyzer
+    public sealed class MethodOverrideChangedDefaultValue : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1006";
         private const string MessageFormat = "{0} the default parameter value {1}.";

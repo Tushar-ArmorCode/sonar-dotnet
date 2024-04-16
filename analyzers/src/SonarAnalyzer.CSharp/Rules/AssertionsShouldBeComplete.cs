@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class AssertionsShouldBeComplete : SonarDiagnosticAnalyzer
+public sealed class AssertionsShouldBeComplete : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S2970";
     private const string MessageFormat = "Complete the assertion";

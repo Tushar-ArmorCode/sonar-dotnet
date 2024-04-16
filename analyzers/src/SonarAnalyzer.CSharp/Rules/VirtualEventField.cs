@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class VirtualEventField : SonarDiagnosticAnalyzer
+    public sealed class VirtualEventField : InternalSonarDiagnosticAnalyzer
     {
         private const string MessageFormat = "Remove this 'virtual' modifier of {0}.";
 

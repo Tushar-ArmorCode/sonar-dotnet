@@ -41,7 +41,7 @@ public class CodeFixProviderTest
     }
 
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    private class TestDuplicateLocationRule : SonarDiagnosticAnalyzer
+    private class TestDuplicateLocationRule : InternalSonarDiagnosticAnalyzer
     {
         public const string DiagnosticId = "Test42";
 

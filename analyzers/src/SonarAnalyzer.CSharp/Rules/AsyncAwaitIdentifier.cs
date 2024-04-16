@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AsyncAwaitIdentifier : SonarDiagnosticAnalyzer
+    public sealed class AsyncAwaitIdentifier : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2306";
         private const string MessageFormat = "Rename '{0}' to not use a contextual keyword as an identifier.";

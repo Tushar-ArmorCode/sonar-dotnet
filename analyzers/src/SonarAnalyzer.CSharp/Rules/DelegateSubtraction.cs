@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class DelegateSubtraction : SonarDiagnosticAnalyzer
+public sealed class DelegateSubtraction : InternalSonarDiagnosticAnalyzer
 {
     internal const string DiagnosticId = "S3172";
     private const string MessageFormat = "Review this subtraction of a chain of delegates: it may not work as you expect.";

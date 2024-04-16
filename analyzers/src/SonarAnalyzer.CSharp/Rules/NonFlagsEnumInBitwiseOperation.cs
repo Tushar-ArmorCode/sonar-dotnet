@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class NonFlagsEnumInBitwiseOperation : SonarDiagnosticAnalyzer
+    public sealed class NonFlagsEnumInBitwiseOperation : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3265";
 

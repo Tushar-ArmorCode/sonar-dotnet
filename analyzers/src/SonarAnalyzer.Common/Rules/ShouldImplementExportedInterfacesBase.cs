@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ShouldImplementExportedInterfacesBase<TArgumentSyntax, TAttributeSyntax, TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class ShouldImplementExportedInterfacesBase<TArgumentSyntax, TAttributeSyntax, TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TArgumentSyntax : SyntaxNode
         where TAttributeSyntax : SyntaxNode
         where TSyntaxKind : struct

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class SetPropertiesInsteadOfMethodsBase<TSyntaxKind, TInvocation> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class SetPropertiesInsteadOfMethodsBase<TSyntaxKind, TInvocation> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
     where TInvocation : SyntaxNode
 {

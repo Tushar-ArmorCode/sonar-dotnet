@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GetTypeWithIsAssignableFrom : SonarDiagnosticAnalyzer
+    public sealed class GetTypeWithIsAssignableFrom : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2219";
         internal const string UseIsOperatorKey = "UseIsOperator";

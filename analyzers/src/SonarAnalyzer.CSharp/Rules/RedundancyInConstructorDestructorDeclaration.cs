@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundancyInConstructorDestructorDeclaration : SonarDiagnosticAnalyzer
+    public sealed class RedundancyInConstructorDestructorDeclaration : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3253";
         private const string MessageFormat = "Remove this redundant {0}.";

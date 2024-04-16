@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class CommentedOutCode : SonarDiagnosticAnalyzer
+public sealed class CommentedOutCode : InternalSonarDiagnosticAnalyzer
 {
     internal const string DiagnosticId = "S125";
     internal const string MessageFormat = "Remove this commented out code.";

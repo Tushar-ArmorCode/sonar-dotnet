@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseConstantsWhereAppropriate : SonarDiagnosticAnalyzer
+    public sealed class UseConstantsWhereAppropriate : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3962";
         private const string MessageFormat = "Replace this 'static readonly' declaration with 'const'.";

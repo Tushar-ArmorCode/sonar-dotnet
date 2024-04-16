@@ -36,7 +36,7 @@ public class DummyAnalyzerVB : DummyAnalyzer<VB.SyntaxKind>
     protected override VB.SyntaxKind NumericLiteralExpression => VB.SyntaxKind.NumericLiteralExpression;
 }
 
-public abstract class DummyAnalyzer<TSyntaxKind> : SonarDiagnosticAnalyzer where TSyntaxKind : struct
+public abstract class DummyAnalyzer<TSyntaxKind> : InternalSonarDiagnosticAnalyzer where TSyntaxKind : struct
 {
     private readonly DiagnosticDescriptor rule = AnalysisScaffolding.CreateDescriptorMain("SDummy");
 

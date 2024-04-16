@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GenericTypeParameterInOut : SonarDiagnosticAnalyzer
+    public sealed class GenericTypeParameterInOut : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3246";
         private const string MessageFormat = "Add the '{0}' keyword to parameter '{1}' to make it '{2}'.";

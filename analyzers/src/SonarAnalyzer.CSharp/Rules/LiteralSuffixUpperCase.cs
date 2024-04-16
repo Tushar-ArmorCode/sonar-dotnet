@@ -23,7 +23,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class LiteralSuffixUpperCase : SonarDiagnosticAnalyzer
+    public sealed class LiteralSuffixUpperCase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S818";
         private const string MessageFormat = "Upper case this literal suffix.";

@@ -23,7 +23,7 @@ using System.Globalization;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ForLoopCounterCondition : SonarDiagnosticAnalyzer
+    public sealed class ForLoopCounterCondition : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1994";
         private const string MessageFormat = "{0}";

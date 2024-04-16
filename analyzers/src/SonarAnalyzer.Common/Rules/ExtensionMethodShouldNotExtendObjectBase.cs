@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class ExtensionMethodShouldNotExtendObjectBase<TSyntaxKind, TMethodDeclaration> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class ExtensionMethodShouldNotExtendObjectBase<TSyntaxKind, TMethodDeclaration> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TSyntaxKind : struct
     where TMethodDeclaration : SyntaxNode
 {

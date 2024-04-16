@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class ExceptionsShouldBeLogged : SonarDiagnosticAnalyzer
+public sealed class ExceptionsShouldBeLogged : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S6667";
     private const string MessageFormat = "Logging in a catch clause should pass the caught exception as a parameter.";

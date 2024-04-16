@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class InitializeStaticFieldsInline : SonarDiagnosticAnalyzer
+    public sealed class InitializeStaticFieldsInline : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3963";
         private const string MessageFormat = "Initialize all 'static fields' inline and remove the 'static constructor'.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class EquatableClassShouldBeSealed : SonarDiagnosticAnalyzer
+    public sealed class EquatableClassShouldBeSealed : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4035";
         private const string MessageFormat = "Seal class '{0}' or implement 'IEqualityComparer<T>' instead.";

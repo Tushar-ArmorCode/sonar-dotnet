@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantPropertyNamesInAnonymousClass : SonarDiagnosticAnalyzer
+    public sealed class RedundantPropertyNamesInAnonymousClass : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3441";
         private const string MessageFormat = "Remove the redundant '{0} ='.";

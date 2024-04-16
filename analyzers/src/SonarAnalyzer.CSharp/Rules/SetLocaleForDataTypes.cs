@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SetLocaleForDataTypes : SonarDiagnosticAnalyzer
+    public sealed class SetLocaleForDataTypes : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4057";
         private const string MessageFormat = "Set the locale for this '{0}'.";

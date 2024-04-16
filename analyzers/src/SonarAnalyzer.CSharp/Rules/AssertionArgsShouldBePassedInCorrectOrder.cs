@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class AssertionArgsShouldBePassedInCorrectOrder : SonarDiagnosticAnalyzer
+public sealed class AssertionArgsShouldBePassedInCorrectOrder : InternalSonarDiagnosticAnalyzer
 {
     internal const string DiagnosticId = "S3415";
     private const string MessageFormat = "Make sure these 2 arguments are in the correct order: expected value, actual value.";

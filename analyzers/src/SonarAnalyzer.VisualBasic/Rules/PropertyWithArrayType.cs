@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class PropertyWithArrayType : SonarDiagnosticAnalyzer
+    public sealed class PropertyWithArrayType : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2365";
         private const string MessageFormat = "Refactor '{0}' into a method, properties should not be based on arrays.";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class SwitchCasesMinimumThreeBase : SonarDiagnosticAnalyzer
+    public abstract class SwitchCasesMinimumThreeBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S1301";
     }

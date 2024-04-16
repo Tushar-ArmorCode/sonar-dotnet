@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotCatchSystemException : SonarDiagnosticAnalyzer
+    public sealed class DoNotCatchSystemException : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2221";
         private const string MessageFormat = "Catch a list of specific exception subtype or use exception filters instead.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class DoNotUseIIf : SonarDiagnosticAnalyzer
+    public sealed class DoNotUseIIf : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3866";
         private const string MessageFormat = "Use the 'If' operator here instead of 'IIf'.";

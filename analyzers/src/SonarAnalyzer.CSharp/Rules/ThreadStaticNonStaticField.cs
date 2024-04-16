@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ThreadStaticNonStaticField : SonarDiagnosticAnalyzer
+    public sealed class ThreadStaticNonStaticField : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3005";
         private const string MessageFormat = "Remove the 'ThreadStatic' attribute from this definition.";

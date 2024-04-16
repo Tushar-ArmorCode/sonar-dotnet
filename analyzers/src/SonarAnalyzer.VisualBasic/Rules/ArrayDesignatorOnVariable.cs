@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class ArrayDesignatorOnVariable : SonarDiagnosticAnalyzer
+    public sealed class ArrayDesignatorOnVariable : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1197";
         private const string MessageFormat = "Move the array designator from the variable to the type.";

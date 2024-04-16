@@ -23,7 +23,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class MultilineBlocksWithoutBrace : SonarDiagnosticAnalyzer
+public sealed class MultilineBlocksWithoutBrace : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S2681";
     private const string MessageFormat = "This line will not be executed {0}; only the first line of this {2}-line block will be. The rest will execute {1}.";

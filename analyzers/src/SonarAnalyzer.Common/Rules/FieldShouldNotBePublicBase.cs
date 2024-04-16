@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class FieldShouldNotBePublicBase<TSyntaxKind, TFieldDeclarationSyntax, TVariableSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class FieldShouldNotBePublicBase<TSyntaxKind, TFieldDeclarationSyntax, TVariableSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TFieldDeclarationSyntax : SyntaxNode
         where TVariableSyntax : SyntaxNode

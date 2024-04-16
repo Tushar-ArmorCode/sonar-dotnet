@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class LoopsAndLinq : SonarDiagnosticAnalyzer
+    public sealed class LoopsAndLinq : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3267";
         private const string MessageFormat = "{0}";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MemberShouldNotHaveConflictingTransparencyAttributes : SonarDiagnosticAnalyzer
+    public sealed class MemberShouldNotHaveConflictingTransparencyAttributes : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4211";
         private const string MessageFormat = "Change or remove this attribute to be consistent with its container.";

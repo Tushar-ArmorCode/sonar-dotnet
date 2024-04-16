@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class SwitchDefaultClauseEmpty : SonarDiagnosticAnalyzer
+    public sealed class SwitchDefaultClauseEmpty : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3532";
         private const string MessageFormat = "Remove this empty 'default' clause.";

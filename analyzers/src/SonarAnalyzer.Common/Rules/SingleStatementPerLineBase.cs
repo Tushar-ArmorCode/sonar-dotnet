@@ -22,7 +22,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class SingleStatementPerLineBase<TSyntaxKind, TStatementSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class SingleStatementPerLineBase<TSyntaxKind, TStatementSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TStatementSyntax : SyntaxNode
     {

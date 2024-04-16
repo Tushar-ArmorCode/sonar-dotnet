@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class EqualityOnModulus : SonarDiagnosticAnalyzer
+    public sealed class EqualityOnModulus : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2197";
         private const string MessageFormat = "The result of this modulus operation may not be {0}.";

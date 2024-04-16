@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class SimpleDoLoop : SonarDiagnosticAnalyzer
+    public sealed class SimpleDoLoop : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2340";
         private const string MessageFormat = "Use a structured loop instead.";

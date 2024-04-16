@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class InvocationResolvesToOverrideWithParams : SonarDiagnosticAnalyzer
+public sealed class InvocationResolvesToOverrideWithParams : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S3220";
     private const string MessageFormat = "Review this call, which partially matches an overload without 'params'. The partial match is '{0}'.";

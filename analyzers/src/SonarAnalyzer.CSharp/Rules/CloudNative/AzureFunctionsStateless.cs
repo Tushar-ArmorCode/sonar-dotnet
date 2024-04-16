@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AzureFunctionsStateless : SonarDiagnosticAnalyzer
+    public sealed class AzureFunctionsStateless : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S6419";
         private const string MessageFormat = "Do not modify a static state from Azure Function.";

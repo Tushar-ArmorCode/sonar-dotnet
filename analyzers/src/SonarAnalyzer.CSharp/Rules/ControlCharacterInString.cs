@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ControlCharacterInString : SonarDiagnosticAnalyzer
+    public sealed class ControlCharacterInString : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2479";
         private const string MessageFormat = "Replace the control character at position {0} by its escape sequence '{1}'.";

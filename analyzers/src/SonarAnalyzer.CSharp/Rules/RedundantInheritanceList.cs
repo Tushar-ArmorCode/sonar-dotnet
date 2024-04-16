@@ -23,7 +23,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantInheritanceList : SonarDiagnosticAnalyzer
+    public sealed class RedundantInheritanceList : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1939";
         internal const string RedundantIndexKey = "redundantIndex";

@@ -96,7 +96,7 @@ public class SonarSemanticModelReportingContextTest
             """)
             .Verify();
 
-    internal abstract class TestAnalyzer : SonarDiagnosticAnalyzer
+    internal abstract class TestAnalyzer : InternalSonarDiagnosticAnalyzer
     {
         public static readonly DiagnosticDescriptor Rule = AnalysisScaffolding.CreateDescriptorMain("SDummy");
         protected abstract GeneratedCodeRecognizer GeneratedCodeRecognizer { get; }

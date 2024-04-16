@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GenericTypeParameterUnused : SonarDiagnosticAnalyzer
+    public sealed class GenericTypeParameterUnused : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2326";
         private const string MessageFormat = "'{0}' is not used in the {1}.";

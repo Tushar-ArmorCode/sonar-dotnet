@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CompareNaN : SonarDiagnosticAnalyzer
+    public sealed class CompareNaN : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2688";
         private const string MessageFormat = "{0}";

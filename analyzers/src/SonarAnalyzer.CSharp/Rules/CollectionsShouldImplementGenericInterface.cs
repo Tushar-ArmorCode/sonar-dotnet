@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CollectionsShouldImplementGenericInterface : SonarDiagnosticAnalyzer
+    public sealed class CollectionsShouldImplementGenericInterface : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3909";
         private const string MessageFormat = "Refactor this collection to implement '{0}'.";

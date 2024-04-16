@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class OperatorsShouldBeOverloadedConsistently : SonarDiagnosticAnalyzer
+    public sealed class OperatorsShouldBeOverloadedConsistently : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4050";
         private const string MessageFormat = "Provide an implementation for: {0}.";

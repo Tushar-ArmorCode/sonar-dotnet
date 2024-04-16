@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DisposableTypesNeedFinalizers : SonarDiagnosticAnalyzer
+    public sealed class DisposableTypesNeedFinalizers : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4002";
         private const string MessageFormat = "Implement a finalizer that calls your 'Dispose' method.";

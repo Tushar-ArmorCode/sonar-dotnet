@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MethodParameterMissingOptional : SonarDiagnosticAnalyzer
+    public sealed class MethodParameterMissingOptional : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3450";
         private const string MessageFormat = "Add the 'Optional' attribute to this parameter.";

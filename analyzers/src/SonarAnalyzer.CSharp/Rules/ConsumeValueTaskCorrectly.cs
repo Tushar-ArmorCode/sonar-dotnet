@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ConsumeValueTaskCorrectly : SonarDiagnosticAnalyzer
+    public sealed class ConsumeValueTaskCorrectly : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S5034";
         internal const string MessageFormat = "{0}";

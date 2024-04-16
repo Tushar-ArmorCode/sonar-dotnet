@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class InsecureTemporaryFilesCreationBase<TMemberAccessSyntax, TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class InsecureTemporaryFilesCreationBase<TMemberAccessSyntax, TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TMemberAccessSyntax : SyntaxNode
         where TSyntaxKind : struct
     {

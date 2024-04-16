@@ -31,7 +31,7 @@ namespace SonarAnalyzer.Rules
         TVariableSyntax,
         TLambdaSyntax,
         TMemberAccessSyntax
-        > : SonarDiagnosticAnalyzer<TSyntaxKind>
+        > : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TArgumentSyntax : SyntaxNode
         where TExpressionSyntax : SyntaxNode

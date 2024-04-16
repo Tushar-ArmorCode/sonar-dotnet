@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CallToAsyncMethodShouldNotBeBlocking : SonarDiagnosticAnalyzer
+    public sealed class CallToAsyncMethodShouldNotBeBlocking : InternalSonarDiagnosticAnalyzer
     {
         private const string MessageFormat = "Replace this use of '{0}' with '{1}'.";
         private const string ResultName = "Result";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class BinaryOperationWithIdenticalExpressionsBase : SonarDiagnosticAnalyzer
+    public abstract class BinaryOperationWithIdenticalExpressionsBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1764";
 

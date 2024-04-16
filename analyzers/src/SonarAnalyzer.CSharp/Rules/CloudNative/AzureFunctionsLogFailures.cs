@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AzureFunctionsLogFailures : SonarDiagnosticAnalyzer
+    public sealed class AzureFunctionsLogFailures : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S6423";
         private const string MessageFormat = "Log exception via ILogger with LogLevel Information, Warning, Error, or Critical.";

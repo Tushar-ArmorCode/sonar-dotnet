@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class SwitchWithoutDefaultBase : SonarDiagnosticAnalyzer
+    public abstract class SwitchWithoutDefaultBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S131";
         protected const string MessageFormat = "Add a '{0}' clause to this '{1}' statement.";

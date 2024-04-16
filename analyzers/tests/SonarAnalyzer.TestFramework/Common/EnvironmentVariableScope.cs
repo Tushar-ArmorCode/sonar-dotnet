@@ -32,7 +32,7 @@ public sealed class EnvironmentVariableScope : IDisposable
 #pragma warning disable S2376 // Write-only properties should not be used
     public bool EnableConcurrentAnalysis
     {
-        set => SetVariable(SonarDiagnosticAnalyzer.EnableConcurrentExecutionVariable, value.ToString());
+        set => SetVariable(InternalSonarDiagnosticAnalyzer.EnableConcurrentExecutionVariable, value.ToString());
     }
 #pragma warning restore S2376
 

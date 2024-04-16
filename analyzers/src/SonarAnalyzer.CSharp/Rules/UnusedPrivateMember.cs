@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UnusedPrivateMember : SonarDiagnosticAnalyzer
+    public sealed class UnusedPrivateMember : InternalSonarDiagnosticAnalyzer
     {
         internal const string S1144DiagnosticId = "S1144";
         private const string S1144MessageFormat = "Remove the unused {0} {1} '{2}'.";

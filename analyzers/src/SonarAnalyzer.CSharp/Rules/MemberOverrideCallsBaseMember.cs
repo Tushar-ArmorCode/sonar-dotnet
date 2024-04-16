@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MemberOverrideCallsBaseMember : SonarDiagnosticAnalyzer
+    public sealed class MemberOverrideCallsBaseMember : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1185";
         private const string MessageFormat = "Remove this {1} '{0}' to simply inherit its behavior.";

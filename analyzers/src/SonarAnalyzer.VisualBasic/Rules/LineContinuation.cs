@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class LineContinuation : SonarDiagnosticAnalyzer
+    public sealed class LineContinuation : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2354";
         private const string MessageFormat = "Reformat the code to remove this use of the line continuation character.";

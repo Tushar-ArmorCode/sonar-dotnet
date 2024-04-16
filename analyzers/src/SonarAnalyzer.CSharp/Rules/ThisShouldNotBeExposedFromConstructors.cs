@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ThisShouldNotBeExposedFromConstructors : SonarDiagnosticAnalyzer
+    public sealed class ThisShouldNotBeExposedFromConstructors : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3366";
         private const string MessageFormat = "Make sure the use of 'this' doesn't expose partially-constructed instances of this class in multi-threaded environments.";

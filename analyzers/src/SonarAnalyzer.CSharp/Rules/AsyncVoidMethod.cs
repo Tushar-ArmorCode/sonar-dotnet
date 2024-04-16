@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AsyncVoidMethod : SonarDiagnosticAnalyzer
+    public sealed class AsyncVoidMethod : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3168";
         private const string MessageFormat = "Return 'Task' instead.";

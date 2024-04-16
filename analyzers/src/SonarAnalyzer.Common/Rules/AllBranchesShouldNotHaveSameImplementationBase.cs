@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class AllBranchesShouldNotHaveSameImplementationBase : SonarDiagnosticAnalyzer
+    public abstract class AllBranchesShouldNotHaveSameImplementationBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string StatementsMessage =
             "Remove this conditional structure or edit its code blocks so that they're not all the same.";

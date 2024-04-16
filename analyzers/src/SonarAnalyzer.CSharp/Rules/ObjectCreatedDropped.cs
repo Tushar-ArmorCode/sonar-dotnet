@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class ObjectCreatedDropped : SonarDiagnosticAnalyzer
+public sealed class ObjectCreatedDropped : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S1848";
     private const string MessageFormat = "Either remove this useless object instantiation of class '{0}' or use it.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DisposableNotDisposed : SonarDiagnosticAnalyzer
+    public sealed class DisposableNotDisposed : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2930";
         private const string MessageFormat = "Dispose '{0}' when it is no longer needed.";

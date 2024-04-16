@@ -24,7 +24,7 @@ using TypeDeclarationTuple = SonarAnalyzer.Common.NodeAndModel<Microsoft.CodeAna
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class FieldShouldBeReadonly : SonarDiagnosticAnalyzer
+    public sealed class FieldShouldBeReadonly : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2933";
         private const string MessageFormat = "Make '{0}' 'readonly'.";

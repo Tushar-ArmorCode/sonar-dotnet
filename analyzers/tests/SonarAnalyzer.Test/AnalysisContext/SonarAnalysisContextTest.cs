@@ -39,9 +39,9 @@ public partial class SonarAnalysisContextTest
         public DiagnosticAnalyzer Analyzer { get; }
         public VerifierBuilder Builder { get; }
 
-        public TestSetup(string testCase, SonarDiagnosticAnalyzer analyzer) : this(testCase, analyzer, Enumerable.Empty<MetadataReference>()) { }
+        public TestSetup(string testCase, InternalSonarDiagnosticAnalyzer analyzer) : this(testCase, analyzer, Enumerable.Empty<MetadataReference>()) { }
 
-        public TestSetup(string testCase, SonarDiagnosticAnalyzer analyzer, IEnumerable<MetadataReference> additionalReferences)
+        public TestSetup(string testCase, InternalSonarDiagnosticAnalyzer analyzer, IEnumerable<MetadataReference> additionalReferences)
         {
             Path = testCase;
             Analyzer = analyzer;

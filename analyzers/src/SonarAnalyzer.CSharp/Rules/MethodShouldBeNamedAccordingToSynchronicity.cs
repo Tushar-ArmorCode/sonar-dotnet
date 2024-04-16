@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class MethodShouldBeNamedAccordingToSynchronicity : SonarDiagnosticAnalyzer
+    public sealed class MethodShouldBeNamedAccordingToSynchronicity : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4261";
         private const string MessageFormat = "{0}";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class DontUseTraceSwitchLevels : SonarDiagnosticAnalyzer
+public sealed class DontUseTraceSwitchLevels : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S6675";
     private const string MessageFormat = "'Trace.{0}' should not be used with 'TraceSwitch' levels.";

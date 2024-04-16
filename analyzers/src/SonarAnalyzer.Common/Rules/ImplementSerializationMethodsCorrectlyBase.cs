@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ImplementSerializationMethodsCorrectlyBase : SonarDiagnosticAnalyzer
+    public abstract class ImplementSerializationMethodsCorrectlyBase : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3927";
         private const string MessageFormat = "Make this method {0}.";

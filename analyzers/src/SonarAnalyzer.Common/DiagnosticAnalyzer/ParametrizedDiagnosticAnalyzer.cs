@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Helpers
 {
-    public abstract class ParametrizedDiagnosticAnalyzer : SonarDiagnosticAnalyzer
+    public abstract class ParametrizedDiagnosticAnalyzer : InternalSonarDiagnosticAnalyzer
     {
         protected abstract void Initialize(SonarParametrizedAnalysisContext context);
 

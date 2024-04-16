@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class NonDerivedPrivateClassesShouldBeSealed : SonarDiagnosticAnalyzer
+    public sealed class NonDerivedPrivateClassesShouldBeSealed : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3260";
         private const string MessageFormat = "{0} {1} which are not derived in the current {2} should be marked as 'sealed'.";

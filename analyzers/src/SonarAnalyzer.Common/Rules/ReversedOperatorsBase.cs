@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ReversedOperatorsBase<TUnaryExpressionSyntax> : SonarDiagnosticAnalyzer
+    public abstract class ReversedOperatorsBase<TUnaryExpressionSyntax> : InternalSonarDiagnosticAnalyzer
         where TUnaryExpressionSyntax : SyntaxNode
     {
         protected const string DiagnosticId = "S2757";

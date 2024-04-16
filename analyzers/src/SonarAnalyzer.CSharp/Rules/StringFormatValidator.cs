@@ -24,7 +24,7 @@ using System.Text.RegularExpressions;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StringFormatValidator : SonarDiagnosticAnalyzer
+    public sealed class StringFormatValidator : InternalSonarDiagnosticAnalyzer
     {
         private const string BugDiagnosticId = "S2275";
         private const string CodeSmellDiagnosticId = "S3457";

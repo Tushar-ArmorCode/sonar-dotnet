@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class EnumStorageNeedsToBeInt32 : SonarDiagnosticAnalyzer
+    public sealed class EnumStorageNeedsToBeInt32 : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4022";
         private const string MessageFormat = "Change this enum storage to 'Int32'.";

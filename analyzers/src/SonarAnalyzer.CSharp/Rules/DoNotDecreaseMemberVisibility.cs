@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotDecreaseMemberVisibility : SonarDiagnosticAnalyzer
+    public sealed class DoNotDecreaseMemberVisibility : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4015";
         private const string MessageFormat = "This member hides '{0}'. Make it non-private or seal the class.";

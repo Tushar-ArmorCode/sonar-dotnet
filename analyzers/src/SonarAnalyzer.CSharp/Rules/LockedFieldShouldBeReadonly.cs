@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class LockedFieldShouldBeReadonly : SonarDiagnosticAnalyzer
+public sealed class LockedFieldShouldBeReadonly : InternalSonarDiagnosticAnalyzer
 {
     private const string LockedFieldDiagnosticId = "S2445";
     private const string LocalVariableDiagnosticId = "S6507";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class ConditionalStructureSameImplementationBase : SonarDiagnosticAnalyzer
+    public abstract class ConditionalStructureSameImplementationBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1871";
         internal const string MessageFormat = "Either merge this {1} with the identical one on line {0} or change one of the implementations.";

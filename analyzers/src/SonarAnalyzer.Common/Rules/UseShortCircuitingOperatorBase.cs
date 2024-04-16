@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class UseShortCircuitingOperatorBase<TSyntaxKind, TBinaryExpression> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class UseShortCircuitingOperatorBase<TSyntaxKind, TBinaryExpression> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TBinaryExpression : SyntaxNode
     {

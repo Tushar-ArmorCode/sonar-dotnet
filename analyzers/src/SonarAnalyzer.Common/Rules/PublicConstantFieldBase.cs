@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class PublicConstantFieldBase : SonarDiagnosticAnalyzer
+    public abstract class PublicConstantFieldBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S2339";
         protected const string MessageFormat = "Change this constant to a {0} property.";

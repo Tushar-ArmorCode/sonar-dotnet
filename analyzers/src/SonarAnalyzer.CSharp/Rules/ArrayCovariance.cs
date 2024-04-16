@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ArrayCovariance : SonarDiagnosticAnalyzer
+    public sealed class ArrayCovariance : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2330";
         private const string MessageFormat = "Refactor the code to not rely on potentially unsafe array conversions.";

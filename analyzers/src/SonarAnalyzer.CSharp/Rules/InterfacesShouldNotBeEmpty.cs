@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class InterfacesShouldNotBeEmpty : SonarDiagnosticAnalyzer
+    public sealed class InterfacesShouldNotBeEmpty : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4023";
         private const string MessageFormat = "Remove this interface or add members to it.";

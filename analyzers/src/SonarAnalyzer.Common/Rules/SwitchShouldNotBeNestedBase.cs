@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class SwitchShouldNotBeNestedBase : SonarDiagnosticAnalyzer
+    public abstract class SwitchShouldNotBeNestedBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S1821";
     }

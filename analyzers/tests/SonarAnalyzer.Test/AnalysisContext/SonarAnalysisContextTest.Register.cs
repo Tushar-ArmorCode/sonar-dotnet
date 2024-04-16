@@ -622,7 +622,7 @@ public partial class SonarAnalysisContextTest
     }
 
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    private class DummyAnalyzerForGenerated : SonarDiagnosticAnalyzer
+    private class DummyAnalyzerForGenerated : InternalSonarDiagnosticAnalyzer
     {
         private readonly DiagnosticDescriptor rule = AnalysisScaffolding.CreateDescriptorMain();
 
@@ -633,7 +633,7 @@ public partial class SonarAnalysisContextTest
     }
 
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    private sealed class TestAnalyzerCS(DiagnosticDescriptor rule, Action<SonarAnalysisContext> register) : SonarDiagnosticAnalyzer
+    private sealed class TestAnalyzerCS(DiagnosticDescriptor rule, Action<SonarAnalysisContext> register) : InternalSonarDiagnosticAnalyzer
     {
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(rule);
 

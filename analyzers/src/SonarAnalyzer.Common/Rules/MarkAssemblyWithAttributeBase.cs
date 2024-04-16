@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class MarkAssemblyWithAttributeBase : SonarDiagnosticAnalyzer
+    public abstract class MarkAssemblyWithAttributeBase : InternalSonarDiagnosticAnalyzer
     {
         private readonly DiagnosticDescriptor rule;
 

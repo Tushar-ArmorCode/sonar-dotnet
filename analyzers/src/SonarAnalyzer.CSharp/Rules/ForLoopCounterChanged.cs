@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ForLoopCounterChanged : SonarDiagnosticAnalyzer
+    public sealed class ForLoopCounterChanged : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S127";
         private const string MessageFormat = "Do not update the loop counter '{0}' within the loop body.";

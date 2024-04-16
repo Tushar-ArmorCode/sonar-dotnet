@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotCatchNullReferenceException : SonarDiagnosticAnalyzer
+    public sealed class DoNotCatchNullReferenceException : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1696";
         private const string MessageFormat = "Do not catch NullReferenceException; test for null instead.";

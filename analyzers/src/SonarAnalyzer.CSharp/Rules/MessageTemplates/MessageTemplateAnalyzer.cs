@@ -23,7 +23,7 @@ using SonarAnalyzer.Rules.MessageTemplates;
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class MessageTemplateAnalyzer : SonarDiagnosticAnalyzer
+public sealed class MessageTemplateAnalyzer : InternalSonarDiagnosticAnalyzer
 {
     private static readonly ImmutableHashSet<SyntaxKind> ValidTemplateKinds = ImmutableHashSet.Create(
         SyntaxKind.StringLiteralExpression,

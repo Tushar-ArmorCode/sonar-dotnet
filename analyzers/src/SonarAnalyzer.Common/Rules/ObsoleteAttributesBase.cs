@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class ObsoleteAttributesBase<TSyntaxKind> : SonarDiagnosticAnalyzer
+public abstract class ObsoleteAttributesBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer
     where TSyntaxKind : struct
 {
     private const string ExplanationNeededDiagnosticId = "S1123";

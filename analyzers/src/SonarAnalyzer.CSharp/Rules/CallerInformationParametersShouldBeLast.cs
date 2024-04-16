@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CallerInformationParametersShouldBeLast : SonarDiagnosticAnalyzer
+    public sealed class CallerInformationParametersShouldBeLast : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3343";
         private const string MessageFormat = "Move '{0}' to the end of the parameter list.";

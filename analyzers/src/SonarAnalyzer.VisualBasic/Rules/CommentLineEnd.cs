@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class CommentLineEnd : SonarDiagnosticAnalyzer
+    public sealed class CommentLineEnd : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S139";
         private const string MessageFormat = "Move this trailing comment on the previous empty line.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TestClassShouldHaveTestMethod : SonarDiagnosticAnalyzer
+    public sealed class TestClassShouldHaveTestMethod : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2187";
         private const string MessageFormat = "Add some tests to this {0}.";

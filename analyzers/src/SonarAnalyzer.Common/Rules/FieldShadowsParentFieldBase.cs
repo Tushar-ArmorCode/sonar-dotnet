@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class FieldShadowsParentFieldBase<TSyntaxKind, TVariableDeclaratorSyntax> : SonarDiagnosticAnalyzer
+    public abstract class FieldShadowsParentFieldBase<TSyntaxKind, TVariableDeclaratorSyntax> : InternalSonarDiagnosticAnalyzer
         where TSyntaxKind : struct
         where TVariableDeclaratorSyntax : SyntaxNode
     {

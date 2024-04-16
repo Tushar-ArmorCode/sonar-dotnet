@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules
 {
     public abstract class OptionalParameterNotPassedToBaseCallBase<TInvocationExpressionSyntax>
-        : SonarDiagnosticAnalyzer
+        : InternalSonarDiagnosticAnalyzer
         where TInvocationExpressionSyntax : SyntaxNode
     {
         protected const string DiagnosticId = "S3466";

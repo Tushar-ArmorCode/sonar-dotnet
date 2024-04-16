@@ -23,7 +23,7 @@ using NodeSymbolAndModel = SonarAnalyzer.Common.NodeSymbolAndModel<Microsoft.Cod
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UnusedReturnValue : SonarDiagnosticAnalyzer
+    public sealed class UnusedReturnValue : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3241";
         private const string MessageFormat = "Change return type to 'void'; not a single caller uses the returned value.";

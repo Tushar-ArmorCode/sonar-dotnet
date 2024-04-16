@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseWhileLoopInstead : SonarDiagnosticAnalyzer
+    public sealed class UseWhileLoopInstead : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1264";
         private const string MessageFormat = "Replace this 'for' loop with a 'while' loop.";

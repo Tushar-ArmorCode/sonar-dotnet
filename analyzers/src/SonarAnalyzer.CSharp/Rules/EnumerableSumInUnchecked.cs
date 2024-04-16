@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class EnumerableSumInUnchecked : SonarDiagnosticAnalyzer
+    public sealed class EnumerableSumInUnchecked : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2291";
         private const string MessageFormat = "Refactor this code to handle 'OverflowException'.";

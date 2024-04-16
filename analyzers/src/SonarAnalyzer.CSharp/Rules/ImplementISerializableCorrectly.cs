@@ -24,7 +24,7 @@ using System.Text;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class ImplementISerializableCorrectly : SonarDiagnosticAnalyzer
+    public class ImplementISerializableCorrectly : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3925";
         private const string MessageFormat = "Update this implementation of 'ISerializable' to conform to the recommended serialization pattern. {0}";

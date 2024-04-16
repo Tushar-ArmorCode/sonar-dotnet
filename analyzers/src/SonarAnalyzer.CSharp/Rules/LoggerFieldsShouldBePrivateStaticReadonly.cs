@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class LoggerFieldsShouldBePrivateStaticReadonly : SonarDiagnosticAnalyzer
+public sealed class LoggerFieldsShouldBePrivateStaticReadonly : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S1312";
     private const string MessageFormat = "Make the logger '{0}' private static readonly.";

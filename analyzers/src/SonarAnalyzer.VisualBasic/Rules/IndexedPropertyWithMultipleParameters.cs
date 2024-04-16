@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class IndexedPropertyWithMultipleParameters : SonarDiagnosticAnalyzer
+    public sealed class IndexedPropertyWithMultipleParameters : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2352";
         private const string MessageFormat = "This indexed property has {0} parameters, use methods instead.";

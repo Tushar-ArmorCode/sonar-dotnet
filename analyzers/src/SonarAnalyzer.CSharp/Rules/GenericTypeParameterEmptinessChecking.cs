@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GenericTypeParameterEmptinessChecking : SonarDiagnosticAnalyzer
+    public sealed class GenericTypeParameterEmptinessChecking : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2955";
         private const string MessageFormat = "Use a comparison to 'default({0})' instead or add a constraint to '{0}' so that it can't be a value type.";

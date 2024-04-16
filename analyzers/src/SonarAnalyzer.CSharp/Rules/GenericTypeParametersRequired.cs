@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GenericTypeParametersRequired : SonarDiagnosticAnalyzer
+    public sealed class GenericTypeParametersRequired : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4018";
         private const string MessageFormat = "Refactor this method to use all type parameters in the parameter list to enable type inference.";

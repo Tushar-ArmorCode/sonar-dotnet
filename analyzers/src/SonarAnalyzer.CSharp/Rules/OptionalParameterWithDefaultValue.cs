@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class OptionalParameterWithDefaultValue : SonarDiagnosticAnalyzer
+    public sealed class OptionalParameterWithDefaultValue : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3451";
         private const string MessageFormat = "Use '[DefaultParameterValue]' instead.";

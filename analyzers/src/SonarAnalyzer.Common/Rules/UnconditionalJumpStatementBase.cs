@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class UnconditionalJumpStatementBase<TStatementSyntax, TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class UnconditionalJumpStatementBase<TStatementSyntax, TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TStatementSyntax : SyntaxNode
         where TSyntaxKind : struct
     {

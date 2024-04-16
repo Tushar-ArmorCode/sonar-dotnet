@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class FinalizerShouldNotBeEmpty : SonarDiagnosticAnalyzer
+    public sealed class FinalizerShouldNotBeEmpty : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3880";
         private const string MessageFormat = "Remove this empty finalizer.";

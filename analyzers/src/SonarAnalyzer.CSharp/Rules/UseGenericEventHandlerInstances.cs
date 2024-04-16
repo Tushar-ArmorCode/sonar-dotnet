@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseGenericEventHandlerInstances : SonarDiagnosticAnalyzer
+    public sealed class UseGenericEventHandlerInstances : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3908";
         private const string MessageFormat = "Refactor this delegate to use 'System.EventHandler<TEventArgs>'.";

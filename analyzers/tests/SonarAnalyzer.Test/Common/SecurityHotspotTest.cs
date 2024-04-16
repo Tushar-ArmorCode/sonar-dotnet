@@ -60,10 +60,10 @@ namespace SonarAnalyzer.Test.Common
             }
         }
 
-        private static IEnumerable<SonarDiagnosticAnalyzer> GetHotspotAnalyzers(AnalyzerLanguage language) =>
+        private static IEnumerable<InternalSonarDiagnosticAnalyzer> GetHotspotAnalyzers(AnalyzerLanguage language) =>
             RuleFinder.GetAnalyzerTypes(language)
-                .Where(type => typeof(SonarDiagnosticAnalyzer).IsAssignableFrom(type))   // Avoid IRuleFactory and SE rules
-                .Select(type => (SonarDiagnosticAnalyzer)Activator.CreateInstance(type))
+                .Where(type => typeof(InternalSonarDiagnosticAnalyzer).IsAssignableFrom(type))   // Avoid IRuleFactory and SE rules
+                .Select(type => (InternalSonarDiagnosticAnalyzer)Activator.CreateInstance(type))
                 .Where(IsSecurityHotspot);
 
         private static bool IsSecurityHotspot(DiagnosticAnalyzer analyzer) =>

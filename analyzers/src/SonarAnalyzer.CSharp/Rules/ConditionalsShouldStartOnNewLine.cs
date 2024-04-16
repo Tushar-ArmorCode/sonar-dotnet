@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ConditionalsShouldStartOnNewLine : SonarDiagnosticAnalyzer
+    public sealed class ConditionalsShouldStartOnNewLine : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3972";
         private const string MessageFormat = "Move this 'if' to a new line or add the missing 'else'.";

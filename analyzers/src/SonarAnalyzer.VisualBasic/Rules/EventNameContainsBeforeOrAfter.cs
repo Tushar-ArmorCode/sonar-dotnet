@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class EventNameContainsBeforeOrAfter : SonarDiagnosticAnalyzer
+    public sealed class EventNameContainsBeforeOrAfter : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2349";
         private const string MessageFormat = "Rename this event to remove the '{0}' {1}.";

@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class BooleanCheckInvertedBase<TBinaryExpression> : SonarDiagnosticAnalyzer
+    public abstract class BooleanCheckInvertedBase<TBinaryExpression> : InternalSonarDiagnosticAnalyzer
         where TBinaryExpression : SyntaxNode
     {
         internal const string DiagnosticId = "S1940";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UninvokedEventDeclaration : SonarDiagnosticAnalyzer
+    public sealed class UninvokedEventDeclaration : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3264";
         private const string MessageFormat = "Remove the unused event '{0}' or invoke it.";

@@ -24,7 +24,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UnnecessaryUsings : SonarDiagnosticAnalyzer
+    public sealed class UnnecessaryUsings : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1128";
         private const string MessageFormat = "Remove this unnecessary 'using'.";

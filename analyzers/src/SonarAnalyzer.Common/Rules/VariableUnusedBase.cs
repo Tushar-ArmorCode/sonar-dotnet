@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class VariableUnusedBase : SonarDiagnosticAnalyzer
+    public abstract class VariableUnusedBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1481";
         protected const string MessageFormat = "Remove the unused local variable '{0}'.";

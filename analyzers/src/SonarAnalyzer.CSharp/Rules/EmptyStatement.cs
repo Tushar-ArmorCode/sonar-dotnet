@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class EmptyStatement : SonarDiagnosticAnalyzer
+    public sealed class EmptyStatement : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S1116";
         private const string MessageFormat = "Remove this empty statement.";

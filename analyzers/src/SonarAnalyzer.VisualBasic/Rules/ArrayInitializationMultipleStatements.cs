@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class ArrayInitializationMultipleStatements : SonarDiagnosticAnalyzer
+    public sealed class ArrayInitializationMultipleStatements : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2429";
         private const string MessageFormat = "Refactor this code to use the '... = {}' syntax.";

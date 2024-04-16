@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class PropertyWriteOnlyBase<TSyntaxKind, TPropertyDeclaration> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class PropertyWriteOnlyBase<TSyntaxKind, TPropertyDeclaration> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TPropertyDeclaration : SyntaxNode
     {

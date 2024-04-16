@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class MethodOverloadsShouldBeGroupedBase<TSyntaxKind, TMemberDeclarationSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class MethodOverloadsShouldBeGroupedBase<TSyntaxKind, TMemberDeclarationSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TSyntaxKind : struct
         where TMemberDeclarationSyntax : SyntaxNode
     {

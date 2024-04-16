@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.VisualBasic
 {
     [DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public sealed class IndexedPropertyName : SonarDiagnosticAnalyzer
+    public sealed class IndexedPropertyName : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2353";
         private const string MessageFormat = "Rename this property to 'Item'.";

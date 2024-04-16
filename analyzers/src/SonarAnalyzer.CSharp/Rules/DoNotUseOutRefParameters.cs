@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotUseOutRefParameters : SonarDiagnosticAnalyzer
+    public sealed class DoNotUseOutRefParameters : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3874";
         private const string MessageFormat = "Consider refactoring this method in order to remove the need for this '{0}' modifier.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class EnumsShouldNotBeNamedReserved : SonarDiagnosticAnalyzer
+public sealed class EnumsShouldNotBeNamedReserved : InternalSonarDiagnosticAnalyzer
 {
     internal const string DiagnosticId = "S4016";
     private const string MessageFormat = "Remove or rename this enum member.";

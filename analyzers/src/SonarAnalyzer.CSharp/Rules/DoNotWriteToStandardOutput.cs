@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotWriteToStandardOutput : SonarDiagnosticAnalyzer
+    public class DoNotWriteToStandardOutput : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S106";
         private const string MessageFormat = "Remove this logging statement.";

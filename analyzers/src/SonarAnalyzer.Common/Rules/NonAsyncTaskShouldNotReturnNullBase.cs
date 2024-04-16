@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class NonAsyncTaskShouldNotReturnNullBase : SonarDiagnosticAnalyzer
+    public abstract class NonAsyncTaskShouldNotReturnNullBase : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4586";
 

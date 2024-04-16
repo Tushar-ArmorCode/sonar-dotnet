@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseUriInsteadOfString : SonarDiagnosticAnalyzer
+    public sealed class UseUriInsteadOfString : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticIdRuleS3994 = "S3994";
         private const string DiagnosticIdRuleS3995 = "S3995";

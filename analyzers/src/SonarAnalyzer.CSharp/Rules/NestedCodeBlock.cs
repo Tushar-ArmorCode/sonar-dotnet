@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class NestedCodeBlock : SonarDiagnosticAnalyzer
+    public sealed class NestedCodeBlock : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S1199";
         private const string MessageFormat = "Extract this nested code block into a separate method.";

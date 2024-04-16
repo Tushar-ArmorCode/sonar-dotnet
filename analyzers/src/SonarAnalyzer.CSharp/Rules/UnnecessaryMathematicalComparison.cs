@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UnnecessaryMathematicalComparison : SonarDiagnosticAnalyzer
+    public sealed class UnnecessaryMathematicalComparison : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S2198";
         private const string MathComparisonMessage = "Comparison to this constant is useless; the constant is outside the range of type '{0}'";

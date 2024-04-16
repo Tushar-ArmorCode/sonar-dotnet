@@ -24,7 +24,7 @@ using SonarAnalyzer.SymbolicExecution.Roslyn;
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class SymbolicExecutionRunnerBase : SonarDiagnosticAnalyzer
+public abstract class SymbolicExecutionRunnerBase : InternalSonarDiagnosticAnalyzer
 {
     protected abstract ImmutableDictionary<DiagnosticDescriptor, RuleFactory> AllRules { get; }
     protected abstract ControlFlowGraph CreateCfg(SemanticModel model, SyntaxNode node, CancellationToken cancel);

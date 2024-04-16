@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DefaultSectionShouldBeFirstOrLast : SonarDiagnosticAnalyzer
+    public sealed class DefaultSectionShouldBeFirstOrLast : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4524";
         private const string MessageFormat = "Move this 'default:' case to the beginning or end of this 'switch' statement.";

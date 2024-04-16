@@ -23,7 +23,7 @@ using SonarAnalyzer.Common.Walkers;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotNestTypesInArguments : SonarDiagnosticAnalyzer
+    public sealed class DoNotNestTypesInArguments : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4017";
         private const string MessageFormat = "Refactor this method to remove the nested type argument.";

@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class GetHashCodeEqualsOverride : SonarDiagnosticAnalyzer
+    public sealed class GetHashCodeEqualsOverride : InternalSonarDiagnosticAnalyzer
     {
         internal const string EqualsName = "Equals";
 

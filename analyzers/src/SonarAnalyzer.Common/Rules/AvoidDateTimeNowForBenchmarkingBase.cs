@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class AvoidDateTimeNowForBenchmarkingBase<TMemberAccess, TInvocationExpression, TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class AvoidDateTimeNowForBenchmarkingBase<TMemberAccess, TInvocationExpression, TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
     where TMemberAccess : SyntaxNode
     where TInvocationExpression : SyntaxNode
     where TSyntaxKind : struct

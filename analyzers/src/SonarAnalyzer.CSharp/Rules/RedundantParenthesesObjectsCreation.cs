@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantParenthesesObjectsCreation : SonarDiagnosticAnalyzer
+    public sealed class RedundantParenthesesObjectsCreation : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3235";
         private const string MessageFormat = "Remove these redundant parentheses.";

@@ -24,7 +24,7 @@ using System.Text.RegularExpressions;
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class CryptographicKeyShouldNotBeTooShort : SonarDiagnosticAnalyzer
+    public sealed class CryptographicKeyShouldNotBeTooShort : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4426";
         private const string MessageFormat = "Use a key length of at least {0} bits for {1} cipher algorithm.{2}";

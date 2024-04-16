@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class RedundantConditionalAroundAssignment : SonarDiagnosticAnalyzer
+    public sealed class RedundantConditionalAroundAssignment : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S3440";
         private const string MessageFormat = "Remove this useless conditional.";

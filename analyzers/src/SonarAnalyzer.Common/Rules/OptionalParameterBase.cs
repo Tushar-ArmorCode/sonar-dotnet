@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class OptionalParameterBase : SonarDiagnosticAnalyzer
+    public abstract class OptionalParameterBase : InternalSonarDiagnosticAnalyzer
     {
         protected const string DiagnosticId = "S2360";
         protected const string MessageFormat = "Use the overloading mechanism instead of the optional parameters.";

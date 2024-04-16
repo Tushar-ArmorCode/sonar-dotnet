@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class DoNotUseCollectionInItsOwnMethodCalls : SonarDiagnosticAnalyzer
+    public sealed class DoNotUseCollectionInItsOwnMethodCalls : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2114";
         private const string MessageFormat = "Change one instance of '{0}' to a different value; {1}";

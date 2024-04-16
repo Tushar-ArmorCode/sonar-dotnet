@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseValueParameter : SonarDiagnosticAnalyzer
+    public sealed class UseValueParameter : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3237";
         private const string MessageFormat = "Use the 'value' contextual keyword in this {0} accessor declaration.";

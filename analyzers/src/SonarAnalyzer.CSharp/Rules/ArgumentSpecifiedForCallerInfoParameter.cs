@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class ArgumentSpecifiedForCallerInfoParameter : SonarDiagnosticAnalyzer
+    public sealed class ArgumentSpecifiedForCallerInfoParameter : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3236";
         private const string MessageFormat = "Remove this argument from the method call; it hides the caller information.";

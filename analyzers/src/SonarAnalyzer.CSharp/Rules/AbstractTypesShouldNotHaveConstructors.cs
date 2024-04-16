@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class AbstractTypesShouldNotHaveConstructors : SonarDiagnosticAnalyzer
+    public sealed class AbstractTypesShouldNotHaveConstructors : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S3442";
         private const string MessageFormat = "Change the visibility of this constructor to '{0}'.";

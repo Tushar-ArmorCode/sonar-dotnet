@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TestMethodShouldContainAssertion : SonarDiagnosticAnalyzer
+    public sealed class TestMethodShouldContainAssertion : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S2699";
         private const string MessageFormat = "Add at least one assertion to this test case.";

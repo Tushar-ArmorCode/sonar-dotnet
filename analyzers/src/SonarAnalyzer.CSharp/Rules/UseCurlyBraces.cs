@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class UseCurlyBraces : SonarDiagnosticAnalyzer
+    public sealed class UseCurlyBraces : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S121";
         private const string MessageFormat = "Add curly braces around the nested statement(s) in this '{0}' block.";

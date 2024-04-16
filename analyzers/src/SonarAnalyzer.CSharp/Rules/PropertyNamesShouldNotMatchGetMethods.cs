@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class PropertyNamesShouldNotMatchGetMethods : SonarDiagnosticAnalyzer
+    public sealed class PropertyNamesShouldNotMatchGetMethods : InternalSonarDiagnosticAnalyzer
     {
         private const string DiagnosticId = "S4059";
         private const string MessageFormat = "Change either the name of property '{0}' or the name of method '{1}' to make them distinguishable.";

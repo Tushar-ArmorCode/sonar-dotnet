@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules;
 
-public abstract class UseTestableTimeProviderBase<TSyntaxKind> : SonarDiagnosticAnalyzer<TSyntaxKind>
+public abstract class UseTestableTimeProviderBase<TSyntaxKind> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
      where TSyntaxKind : struct
 {
     private const string DiagnosticId = "S6354";

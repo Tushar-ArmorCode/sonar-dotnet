@@ -20,7 +20,7 @@
 
 namespace SonarAnalyzer.Rules
 {
-    public abstract class NameOfShouldBeUsedBase<TMethodSyntax, TSyntaxKind, TThrowSyntax> : SonarDiagnosticAnalyzer<TSyntaxKind>
+    public abstract class NameOfShouldBeUsedBase<TMethodSyntax, TSyntaxKind, TThrowSyntax> : InternalSonarDiagnosticAnalyzer<TSyntaxKind>
         where TMethodSyntax : SyntaxNode
         where TSyntaxKind : struct
         where TThrowSyntax : SyntaxNode

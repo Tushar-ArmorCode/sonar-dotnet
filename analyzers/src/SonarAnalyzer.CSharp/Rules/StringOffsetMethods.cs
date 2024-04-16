@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class StringOffsetMethods : SonarDiagnosticAnalyzer
+    public sealed class StringOffsetMethods : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4635";
         private const string MessageFormat = "Replace '{0}' with the overload that accepts a startIndex parameter.";

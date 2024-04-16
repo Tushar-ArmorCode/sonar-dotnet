@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp;
 
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-public sealed class UseStringCreate : SonarDiagnosticAnalyzer
+public sealed class UseStringCreate : InternalSonarDiagnosticAnalyzer
 {
     private const string DiagnosticId = "S6618";
     private const string MessageFormat = """Use "string.Create" instead of "FormattableString".""";

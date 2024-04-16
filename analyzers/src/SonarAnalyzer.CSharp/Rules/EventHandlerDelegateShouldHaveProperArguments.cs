@@ -21,7 +21,7 @@
 namespace SonarAnalyzer.Rules.CSharp
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class EventHandlerDelegateShouldHaveProperArguments : SonarDiagnosticAnalyzer
+    public sealed class EventHandlerDelegateShouldHaveProperArguments : InternalSonarDiagnosticAnalyzer
     {
         internal const string DiagnosticId = "S4220";
         private const string MessageFormat = "{0}";
