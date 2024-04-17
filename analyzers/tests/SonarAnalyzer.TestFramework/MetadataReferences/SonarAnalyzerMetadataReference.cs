@@ -18,14 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using SonarAnalyzer;
+#if NET
 
-[assembly: AssemblyTitle("SonarAnalyzer C#")]
-[assembly: AssemblyProduct("SonarAnalyzer")]
-[assembly: AssemblyDescription("")]
+using System.IO;
+using SonarAnalyzer.AnalysisContext;
+using static SonarAnalyzer.TestFramework.MetadataReferences.MetadataReferenceFactory;
 
-[assembly: InternalsVisibleTo("SonarAnalyzer.Test" + Signing.InternalsVisibleToPublicKey)]
-[assembly: InternalsVisibleTo("Internal.SonarAnalyzer.CSharp.Styling" + Signing.InternalsVisibleToPublicKey)]
-[assembly: InternalsVisibleTo("SonarAnalyzer.TestFramework.Test" + Signing.InternalsVisibleToPublicKey)]
+namespace SonarAnalyzer.TestFramework.MetadataReferences;
+
+public static class SonarAnalyzerMetadataReference
+{
+    public static MetadataReference SonarAnalyzerCommon { get; } = Create(typeof(SonarAnalysisContext));
+    public static MetadataReference SonarAnalyzerCSharp { get; } = CreateFromFile(Path.Combine(Path.GetDirectoryName(typeof(SonarAnalysisContext).Assembly.Location), "SonarAnalyzer.CSharp.dll"));
+    public static MetadataReference MicrosoftCodeAnalysis { get; } = Create(typeof(Microsoft.CodeAnalysis.SymbolKind));
+    public static MetadataReference MicrosoftCodeAnalysisCsharp { get; } = Create(typeof(Microsoft.CodeAnalysis.CSharp.SyntaxKind));
+}
+#endif

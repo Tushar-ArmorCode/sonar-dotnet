@@ -32,6 +32,9 @@ internal static class MetadataReferenceFactory
     public static MetadataReference Create(Type type) =>
         MetadataReference.CreateFromFile(type.Assembly.Location);
 
+    public static MetadataReference CreateFromFile(string assemblyPath) =>
+        MetadataReference.CreateFromFile(assemblyPath);
+
     public static MetadataReference CreateReference(string assemblyName) =>
         MetadataReference.CreateFromFile(Path.Combine(SystemAssembliesFolder, assemblyName));
 
