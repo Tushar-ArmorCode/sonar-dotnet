@@ -25,24 +25,22 @@ public abstract class ArrayPassedAsParamsBase<TSyntaxKind, TArgumentNode> : Sona
     where TArgumentNode : SyntaxNode
 {
     private const string DiagnosticId = "S3878";
-    protected override string MessageFormat => "Remove this array creation and simply pass the elements.";
-
-    private readonly DiagnosticDescriptor rule;
 
     protected abstract TSyntaxKind[] ExpressionKinds { get; }
     protected abstract TArgumentNode LastArgumentIfArrayCreation(SyntaxNode expression);
 
-    protected ArrayPassedAsParamsBase() : base(DiagnosticId) =>
-        rule = Language.CreateDescriptor(DiagnosticId, MessageFormat);
+    protected override string MessageFormat => "Remove this array creation and simply pass the elements.";
+
+    protected ArrayPassedAsParamsBase() : base(DiagnosticId) {}
 
     protected sealed override void Initialize(SonarAnalysisContext context) =>
         context.RegisterNodeAction(Language.GeneratedCodeRecognizer, c =>
         {
             if (LastArgumentIfArrayCreation(c.Node) is { } lastArgument
                 && ParameterSymbol(c.SemanticModel, c.Node, lastArgument) is { IsParams: true } param
-                && !IsJaggedArrayParam(param))
+                && !Exluded(param))
             {
-                c.ReportIssue(rule, lastArgument.GetLocation());
+                c.ReportIssue(Rule, lastArgument.GetLocation());
             }
         }, ExpressionKinds);
 
@@ -52,6 +50,14 @@ public abstract class ArrayPassedAsParamsBase<TSyntaxKind, TArgumentNode> : Sona
             ? param
             : null;
 
-    private static bool IsJaggedArrayParam(IParameterSymbol param) =>
-        param.Type is IArrayTypeSymbol { ElementType: IArrayTypeSymbol };
+    private static bool Exluded(IParameterSymbol param)
+    {
+        return IsJaggedArrayParam(param) || IsObjectOrArrayType(param);
+
+        static bool IsJaggedArrayParam(IParameterSymbol param) =>
+            param.Type is IArrayTypeSymbol { ElementType: IArrayTypeSymbol };
+
+        static bool IsObjectOrArrayType(IParameterSymbol param) =>
+            param.Type is IArrayTypeSymbol array && array.ElementType.IsAny(KnownType.System_Object, KnownType.System_Array);
+    }
 }
